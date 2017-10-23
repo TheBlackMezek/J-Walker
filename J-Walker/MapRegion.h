@@ -15,10 +15,11 @@ public:
 	size_t tiles[100];
 	Transform transform;
 
-	void draw(vec2 playerPos);
-	void draw();
+	void drawAvatar(vec2 playerPos);
+	void drawWorld(vec2 playerPos);
 
 private:
-	float tileSize;
+	float tileSizeAvatar;
+	float tileSizeWorld;
 };
 

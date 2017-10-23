@@ -8,7 +8,7 @@
 #include "Player.h"
 #include "Box.h"
 #include "Circle.h"
-#include "MapRegion.h"
+#include "World.h"
 
 
 
@@ -26,7 +26,7 @@ int main()
 
 
 	Player player;
-	MapRegion reg;
+	World world;
 
 
 
@@ -36,7 +36,8 @@ int main()
 		player.update();
 
 		player.draw();
-		reg.draw();
+		//world.drawAvatar(player.transform.pos);
+		world.drawEdit({ 0,0 });
 	}
 
 
