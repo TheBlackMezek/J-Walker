@@ -12,8 +12,8 @@ Button::Button()
 	callback = nullptr;
 
 	transform.pos = { 0,0 };
-	transform.disfigure = { 100, 100 };
 	size = { 50,50 };
+	transform.disfigure = size;
 
 	imgs[0] = 0;
 	imgs[1] = 0;
@@ -35,6 +35,10 @@ void Button::update()
 		mouse.y >= transform.pos.y && mouse.y < transform.pos.y + size.y)
 	{
 		mouseOver = true;
+		if (sfw::getMouseButton(1))
+		{
+			callback();
+		}
 	}
 	else
 	{
@@ -48,7 +52,7 @@ void Button::draw()
 	//m[6] += 25;
 	//m[7] += 25;
 	
-	m = m + translation({ 50, 50 });
+	m = translation({ size.x / 2, size.y / 2 }) * m;
 
 	sfw::drawTextureMatrix3(imgs[mouseOver], 0U, WHITE, m.m);
 	//sfw::drawTexture(imgs[mouseOver], transform.pos.x, transform.pos.y, size.x, size.y);

@@ -14,6 +14,16 @@
 
 
 
+
+enum GameState
+{
+	WORLD_STATE,
+	EDIT_STATE,
+	PLAY_STATE
+};
+
+
+
 int main()
 {
 	srand(time(NULL));
@@ -28,6 +38,9 @@ int main()
 
 
 
+
+
+	GameState state = WORLD_STATE;
 
 	Player player;
 	World world;
@@ -47,14 +60,29 @@ int main()
 
 
 
+
+
+		if (state == WORLD_STATE)
+		{
+			world.drawWorld(player.transform.pos);
+		}
+		else if (state == EDIT_STATE)
+		{
+
+		}
+		else if (state == PLAY_STATE)
+		{
+			world.drawAvatar(player.transform.pos);
+			player.draw();
+		}
 		player.draw();
-		sfw::drawCircle(sfw::getMouseX(), sfw::getMouseY(), 3);
 
 		//world.drawAvatar(player.transform.pos);
 		world.drawWorld(player.transform.pos);
 		//world.drawEdit({ 0,0 });
 
 		bb.draw();
+		sfw::drawCircle(sfw::getMouseX(), sfw::getMouseY(), 3);
 	}
 
 
