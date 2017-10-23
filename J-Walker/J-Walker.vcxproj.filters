@@ -100,5 +100,59 @@
     <Image Include="GenButton2.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="10Grass.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="10Water.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="20Grass.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="20Water.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="30Grass.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="30Water.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="40Grass.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="40Water.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="50Grass.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="50Water.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="60Grass.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="60Water.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="70Grass.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="70Water.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="80Grass.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="80Water.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="90Grass.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="90Water.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

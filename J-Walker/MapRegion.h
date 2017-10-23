@@ -13,6 +13,7 @@ public:
 	~MapRegion();
 
 	size_t tiles[100];
+	size_t tileCounts[2];
 	Transform transform;
 
 	void drawAvatar(vec2 playerPos);

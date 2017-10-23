@@ -149,6 +149,24 @@
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="10Grass.png" />
+    <Image Include="10Water.png" />
+    <Image Include="20Grass.png" />
+    <Image Include="20Water.png" />
+    <Image Include="30Grass.png" />
+    <Image Include="30Water.png" />
+    <Image Include="40Grass.png" />
+    <Image Include="40Water.png" />
+    <Image Include="50Grass.png" />
+    <Image Include="50Water.png" />
+    <Image Include="60Grass.png" />
+    <Image Include="60Water.png" />
+    <Image Include="70Grass.png" />
+    <Image Include="70Water.png" />
+    <Image Include="80Grass.png" />
+    <Image Include="80Water.png" />
+    <Image Include="90Grass.png" />
+    <Image Include="90Water.png" />
     <Image Include="AvatarButton1.png" />
     <Image Include="AvatarButton2.png" />
     <Image Include="BackButton1.png" />

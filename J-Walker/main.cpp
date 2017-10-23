@@ -26,6 +26,7 @@ enum GameState
 GameState state = WORLD_STATE;
 Player player;
 World world;
+MapRegion newReg;
 
 
 void switchToAvatarMode();
@@ -46,6 +47,8 @@ int main()
 	sfw::setBackgroundColor(BLACK);
 
 	TextureLoader::init();
+
+	newReg.tileCounts[0] = 200;
 
 
 
@@ -132,5 +135,16 @@ void switchToWorldMode()
 
 void genRegion()
 {
+	if (newReg.tileCounts[0] == 200)
+	{
+		for (int i = 0; i < 100; ++i)
+		{
+			newReg.tiles[i] = 0;
+		}
 
+		int amtGrass = rand() % 9 + 1;
+		amtGrass *= 10;
+
+		int amtWater = 100 - amtGrass;
+	}
 }
