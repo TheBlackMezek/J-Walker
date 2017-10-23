@@ -37,7 +37,8 @@ int main()
 
 		player.draw();
 		//world.drawAvatar(player.transform.pos);
-		world.drawEdit({ 0,0 });
+		world.drawWorld(player.transform.pos);
+		//world.drawEdit({ 0,0 });
 	}
 
 

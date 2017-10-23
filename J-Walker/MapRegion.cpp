@@ -1,8 +1,10 @@
 #include "MapRegion.h"
 
 
+#include <random>
 
 #include "Box.h"
+#include "TileRender.h"
 
 
 
@@ -10,7 +12,7 @@ MapRegion::MapRegion()
 {
 	for (int i = 0; i < 100; ++i)
 	{
-		tiles[i] = 1;
+		tiles[i] = rand() % 2 + 1;
 	}
 
 	tileSizeAvatar = 40;
@@ -30,10 +32,11 @@ void MapRegion::drawAvatar(vec2 playerPos)
 	{
 		for (int x = 0; x < 10; ++x)
 		{
-			tiles[x + y * 10];
-			Box::draw(playerPos, {	(float)x * tileSizeAvatar,
-									(float)y * tileSizeAvatar },
-									{ tileSizeAvatar,tileSizeAvatar });
+			TileRender::draw(playerPos,
+					{ (float)x * tileSizeAvatar,
+					  (float)y * tileSizeAvatar },
+					{ tileSizeAvatar,tileSizeAvatar },
+					  tiles[x + y * 10]);
 		}
 	}
 }
@@ -45,9 +48,11 @@ void MapRegion::drawWorld(vec2 playerPos)
 		for (int x = 0; x < 10; ++x)
 		{
 			tiles[x + y * 10];
-			Box::draw(playerPos, {	(float)x * tileSizeWorld,
-									(float)y * tileSizeWorld },
-									{ tileSizeWorld,tileSizeWorld });
+			TileRender::draw(playerPos,
+					{ (float)x * tileSizeWorld,
+					  (float)y * tileSizeWorld },
+					{ tileSizeWorld,tileSizeWorld },
+					  tiles[x + y * 10]);
 		}
 	}
 }

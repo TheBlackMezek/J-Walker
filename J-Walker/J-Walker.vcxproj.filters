@@ -42,6 +42,9 @@
     <ClCompile Include="World.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TileRender.cpp">
+      <Filter>Source Files\Drawing</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -61,6 +64,9 @@
     </ClInclude>
     <ClInclude Include="World.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TileRender.h">
+      <Filter>Header Files\Drawing</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
