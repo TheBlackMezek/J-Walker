@@ -8,6 +8,7 @@
 #include "Player.h"
 #include "Box.h"
 #include "Circle.h"
+#include "MapRegion.h"
 
 
 
@@ -25,10 +26,7 @@ int main()
 
 
 	Player player;
-	vec2 boxpos = { 100, 100 };
-	vec2 boxsize = { 20, 20 };
-	vec2 circlepos = { 200, 200 };
-	float circleradius = 40;
+	MapRegion reg;
 
 
 
@@ -38,8 +36,7 @@ int main()
 		player.update();
 
 		player.draw();
-		Box::draw(player.transform.pos, boxpos, boxsize);
-		Circle::draw(player.transform.pos, circlepos, circleradius);
+		reg.draw();
 	}
 
 

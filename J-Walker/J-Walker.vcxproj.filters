@@ -36,6 +36,9 @@
     <ClCompile Include="Line.cpp">
       <Filter>Source Files\Drawing</Filter>
     </ClCompile>
+    <ClCompile Include="MapRegion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -49,6 +52,9 @@
     </ClInclude>
     <ClInclude Include="Box.h">
       <Filter>Header Files\Drawing</Filter>
+    </ClInclude>
+    <ClInclude Include="MapRegion.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -44,8 +44,6 @@ void Player::update()
 	{
 		transform.pos.x -= walkSpeed * delta;
 	}
-
-	std::cout << transform.pos.x << std::endl;
 }
 
 void Player::draw()
