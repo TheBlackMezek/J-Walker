@@ -127,22 +127,32 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Box.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="Circle.cpp" />
     <ClCompile Include="Line.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MapRegion.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="TextureLoader.cpp" />
     <ClCompile Include="TileRender.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Box.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="Circle.h" />
     <ClInclude Include="Line.h" />
     <ClInclude Include="MapRegion.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="TextureLoader.h" />
     <ClInclude Include="TileRender.h" />
     <ClInclude Include="World.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="AvatarButton1.png" />
+    <Image Include="AvatarButton2.png" />
+    <Image Include="BackButton1.png" />
+    <Image Include="BackButton2.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -45,6 +45,12 @@
     <ClCompile Include="TileRender.cpp">
       <Filter>Source Files\Drawing</Filter>
     </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -68,5 +74,25 @@
     <ClInclude Include="TileRender.h">
       <Filter>Header Files\Drawing</Filter>
     </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="AvatarButton1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="AvatarButton2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="BackButton1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="BackButton2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
