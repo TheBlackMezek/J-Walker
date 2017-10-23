@@ -94,5 +94,11 @@
     <Image Include="BackButton2.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="GenButton1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="GenButton2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

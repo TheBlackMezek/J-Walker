@@ -35,7 +35,7 @@ void Button::update()
 		mouse.y >= transform.pos.y && mouse.y < transform.pos.y + size.y)
 	{
 		mouseOver = true;
-		if (sfw::getMouseButton(1))
+		if (sfw::getMouseButton(0))
 		{
 			callback();
 		}

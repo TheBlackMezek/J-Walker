@@ -23,6 +23,17 @@ enum GameState
 };
 
 
+GameState state = WORLD_STATE;
+Player player;
+World world;
+
+
+void switchToAvatarMode();
+void switchToWorldMode();
+void genRegion();
+
+
+
 
 int main()
 {
@@ -38,54 +49,88 @@ int main()
 
 
 
+	player.transform.pos = { 20, 20 };
 
 
-	GameState state = WORLD_STATE;
 
-	Player player;
-	World world;
+	Button avatarModeBut;
+	avatarModeBut.transform.pos = { 0, 0 };
+	avatarModeBut.callback = &switchToAvatarMode;
+	avatarModeBut.imgs[0] = TextureLoader::avatar_button_1;
+	avatarModeBut.imgs[1] = TextureLoader::avatar_button_2;
 
-	Button bb;
-	bb.transform.pos = { 250, 250 };
-	bb.imgs[0] = TextureLoader::back_button_1;
-	bb.imgs[1] = TextureLoader::back_button_2;
+	Button worldModeBut;
+	worldModeBut.transform.pos = { 0, 0 };
+	worldModeBut.callback = &switchToWorldMode;
+	worldModeBut.imgs[0] = TextureLoader::back_button_1;
+	worldModeBut.imgs[1] = TextureLoader::back_button_2;
+
+	Button genRegBut;
+	genRegBut.transform.pos = { 100, 0 };
+	genRegBut.size = { 100, 50 };
+	genRegBut.transform.disfigure = genRegBut.size;
+	genRegBut.callback = &genRegion;
+	genRegBut.imgs[0] = TextureLoader::gen_button_1;
+	genRegBut.imgs[1] = TextureLoader::gen_button_2;
 
 	
 
 
 	while (sfw::stepContext())
 	{
-		player.update();
-		bb.update();
-
-
-
-
-
 		if (state == WORLD_STATE)
 		{
+			player.update();
+			avatarModeBut.update();
+			genRegBut.update();
+
 			world.drawWorld(player.transform.pos);
+			avatarModeBut.draw();
+			genRegBut.draw();
 		}
 		else if (state == EDIT_STATE)
 		{
+			worldModeBut.update();
 
+			worldModeBut.draw();
 		}
 		else if (state == PLAY_STATE)
 		{
+			player.update();
+
 			world.drawAvatar(player.transform.pos);
 			player.draw();
+
+			if (sfw::getKey(KEY_ESCAPE))
+			{
+				state = WORLD_STATE;
+				player.transform.pos = { 20,20 };
+			}
 		}
-		player.draw();
 
-		//world.drawAvatar(player.transform.pos);
-		world.drawWorld(player.transform.pos);
-		//world.drawEdit({ 0,0 });
-
-		bb.draw();
 		sfw::drawCircle(sfw::getMouseX(), sfw::getMouseY(), 3);
 	}
 
 
-
 	return 0;
+}
+
+
+
+
+void switchToAvatarMode()
+{
+	state = PLAY_STATE;
+	player.transform.pos = { 100,100 };
+}
+
+void switchToWorldMode()
+{
+	state = WORLD_STATE;
+	player.transform.pos = { 20,20 };
+}
+
+void genRegion()
+{
+
 }

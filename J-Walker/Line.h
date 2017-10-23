@@ -14,6 +14,7 @@ public:
 
 	static void draw(vec2 playerPos, vec2 start, vec2 end);
 	static void draw(vec2 playerPos, vec2 start, vec2 end, size_t color);
+	static void draw(vec2 start, vec2 end, size_t color);
 
 };
 

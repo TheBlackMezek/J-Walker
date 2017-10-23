@@ -153,6 +153,8 @@
     <Image Include="AvatarButton2.png" />
     <Image Include="BackButton1.png" />
     <Image Include="BackButton2.png" />
+    <Image Include="GenButton1.png" />
+    <Image Include="GenButton2.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

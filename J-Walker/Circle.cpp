@@ -38,3 +38,8 @@ void Circle::draw(vec2 playerPos, vec2 pos, float radius, size_t color)
 		300 - offset.y,
 		radius, 12U, color);
 }
+
+void Circle::draw(vec2 pos, float radius, size_t color)
+{
+	sfw::drawCircle(pos.x, pos.y, radius, 12U, color);
+}

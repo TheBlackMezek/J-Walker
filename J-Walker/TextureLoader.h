@@ -16,6 +16,9 @@ public:
 
 	static int back_button_1;
 	static int back_button_2;
+	
+	static int gen_button_1;
+	static int gen_button_2;
 
 
 	static void init();

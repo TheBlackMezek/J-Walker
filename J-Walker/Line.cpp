@@ -39,9 +39,13 @@ void Line::draw(vec2 playerPos, vec2 start, vec2 end, size_t color)
 	endOffset.x = playerPos.x - end.x;
 	endOffset.y = playerPos.y - end.y;
 
-	//sfw::drawLine(lineStart.x, lineStart.y, lineEnd.x, lineEnd.y);
 	sfw::drawLine(400 - startOffset.x,
 		300 - startOffset.y,
 		400 - endOffset.x,
 		300 - endOffset.y, color);
+}
+
+void Line::draw(vec2 start, vec2 end, size_t color)
+{
+	sfw::drawLine(start.x, start.y, end.x, end.y, color);
 }

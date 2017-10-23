@@ -42,3 +42,27 @@ void TileRender::draw(vec2 playerPos, vec2 pos, vec2 size, int type)
 		break;
 	}
 }
+
+void TileRender::draw(vec2 pos, vec2 size, int type)
+{
+	vec2 botLeft = { pos.x, pos.y };
+	vec2 botRight = { pos.x + size.x, pos.y };
+	vec2 topLeft = { pos.x, pos.y + size.y };
+	vec2 topRight = { pos.x + size.x, pos.y + size.y };
+
+	switch (type)
+	{
+	case 1:
+		Box::draw(pos, size, GREEN);
+		Line::draw(botLeft, topRight, GREEN);
+		Line::draw(botRight, topLeft, GREEN);
+		break;
+	case 2:
+		Box::draw(pos, size, BLUE);
+		Circle::draw({ pos.x + size.x / 2, pos.y + size.y / 2 }, size.x / 2, BLUE);
+		break;
+	default:
+		Box::draw(pos, size);
+		break;
+	}
+}
