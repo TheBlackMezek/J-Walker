@@ -180,6 +180,7 @@ int main()
 			worldModeBut.update();
 
 			worldModeBut.draw();
+			newReg.drawAvatar(player.transform.pos + vec2{330, 130});
 			world.drawEdit(newReg.transform.pos);
 		}
 		else if (state == PLAY_STATE)
