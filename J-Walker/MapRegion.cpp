@@ -19,7 +19,7 @@ MapRegion::MapRegion()
 	{
 		spawners[i].active = true;
 		spawners[i].transform.parent = &transform;
-		spawners[i].cooldown = 1;
+		spawners[i].cooldown = 10;
 		spawners[i].heat = (rand() % (int)(spawners[i].cooldown * 1000)) / 1000.0f;
 	}
 

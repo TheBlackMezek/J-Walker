@@ -30,6 +30,7 @@ void World::update(vec2 playerPos)
 	for (int i = bullets.size() - 1; i >= 0; --i)
 	{
 		bool hit = false;
+		bullets[i].lifeTime += sfw::getDeltaTime();
 
 		for (int q = 0; q < enemies.size(); ++q)
 		{
@@ -43,7 +44,6 @@ void World::update(vec2 playerPos)
 		}
 
 
-		bullets[i].lifeTime += sfw::getDeltaTime();
 
 		if (!hit && bullets[i].lifeTime > bullets[i].lifeMax)
 		{
@@ -77,8 +77,7 @@ void World::update(vec2 playerPos)
 				if (regs[i].spawners[q].heat == 0)
 				{
 					regs[i].spawners[q].heat = regs[i].spawners[q].cooldown;
-					Mat3 m = regs[i].spawners[q].transform.getGlobalTransform();
-					vec2 enemy = { m[6], m[7] };
+					vec2 enemy = regs[i].spawners[q].transform.pos + regs[i].transform.pos * 400;
 					enemies.push_back(enemy);
 				}
 			}
@@ -105,7 +104,7 @@ void World::drawAvatar(vec2 playerPos)
 		{
 			if (regs[i].spawners[q].active)
 			{
-				Box::draw(playerPos, regs[i].spawners[q].transform.pos, vec2{ 6, 6 }, RED);
+				Box::draw(playerPos, regs[i].spawners[q].transform.pos + regs[i].transform.pos * 400, vec2{ 6, 6 }, RED);
 			}
 		}
 		regs[i].drawAvatar(playerPos);
