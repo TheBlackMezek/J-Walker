@@ -8,6 +8,16 @@
 #include "MapRegion.h"
 
 
+
+struct Bullet
+{
+	float lifeTime;
+	float lifeMax;
+	vec2 pos;
+	vec2 vel;
+};
+
+
 class World
 {
 public:
@@ -15,6 +25,10 @@ public:
 	~World();
 
 	std::vector<MapRegion> regs;
+	std::vector<Bullet> bullets;
+
+
+	void update(vec2 playerPos);
 
 	void drawAvatar(vec2 playerPos);
 	void drawWorld(vec2 playerPos);

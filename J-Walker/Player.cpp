@@ -15,6 +15,7 @@ Player::Player()
 	size.y = 20;
 
 	walkSpeed = 100;
+	gunCooldown = 0.1f;
 }
 
 
@@ -43,6 +44,12 @@ void Player::update()
 	if (sfw::getKey('A'))
 	{
 		transform.pos.x -= walkSpeed * delta;
+	}
+
+	gunHeat -= delta;
+	if (gunHeat < 0)
+	{
+		gunHeat = 0;
 	}
 }
 

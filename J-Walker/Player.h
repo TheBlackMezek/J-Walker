@@ -15,6 +15,8 @@ public:
 	vec2 size;
 	Transform transform;
 	float walkSpeed;
+	float gunCooldown;
+	float gunHeat;
 
 
 	void update();

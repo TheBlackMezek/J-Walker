@@ -295,6 +295,22 @@ int main()
 		else if (state == PLAY_STATE)
 		{
 			player.update();
+			if (sfw::getMouseButton(0) && player.gunHeat == 0)
+			{
+				player.gunHeat = player.gunCooldown;
+				Bullet b;
+				b.pos = player.transform.pos;
+				vec2 v = { sfw::getMouseX(), sfw::getMouseY() };
+				v = v - vec2{400, 300};
+				v = normal(v) * 40;
+				b.vel = v;
+				b.lifeTime = 0;
+				b.lifeMax = 2;
+				world.bullets.push_back(b);
+			}
+			world.update(player.transform.pos);
+
+
 
 			world.drawAvatar(player.transform.pos);
 			player.draw();
@@ -318,6 +334,7 @@ void switchToAvatarMode()
 {
 	state = PLAY_STATE;
 	player.transform.pos = { 100,100 };
+	player.gunHeat = player.gunCooldown;
 }
 
 void switchToWorldMode()
