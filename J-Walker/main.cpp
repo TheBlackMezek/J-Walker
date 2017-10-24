@@ -310,6 +310,15 @@ int main()
 			}
 			world.update(player.transform.pos);
 
+			for (int i = 0; i < world.enemies.size(); ++i)
+			{
+				if (distance(world.enemies[i], player.transform.pos) < 13)
+				{
+					state = WORLD_STATE;
+					player.transform.pos = { 20, 20 };
+				}
+			}
+
 
 
 			world.drawAvatar(player.transform.pos);
@@ -335,6 +344,15 @@ void switchToAvatarMode()
 	state = PLAY_STATE;
 	player.transform.pos = { 100,100 };
 	player.gunHeat = player.gunCooldown;
+	world.enemies.clear();
+	world.bullets.clear();
+	for (int i = 0; i < world.regs.size(); ++i)
+	{
+		for (int q = 0; q < 3; ++q)
+		{
+			world.regs[i].spawners[q].heat = (rand() % (int)(world.regs[i].spawners[q].cooldown * 1000)) / 1000.0f;
+		}
+	}
 }
 
 void switchToWorldMode()
