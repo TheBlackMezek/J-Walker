@@ -15,6 +15,14 @@ MapRegion::MapRegion()
 		tiles[i] = rand() % 2 + 1;
 	}
 
+	for (int i = 0; i < 3; ++i)
+	{
+		spawners[i].active = true;
+		spawners[i].transform.parent = &transform;
+		spawners[i].cooldown = 1;
+		spawners[i].heat = (rand() % (int)(spawners[i].cooldown * 1000)) / 1000.0f;
+	}
+
 	tileSizeAvatar = 40;
 	tileSizeWorld = 4;
 }

@@ -6,6 +6,15 @@
 
 
 
+struct EnemySpawner
+{
+	bool active;
+	Transform transform;
+	float heat;
+	float cooldown;
+};
+
+
 class MapRegion
 {
 public:
@@ -14,6 +23,7 @@ public:
 
 	size_t tiles[100];
 	size_t tileCounts[3];
+	EnemySpawner spawners[3];
 	Transform transform;
 
 	void drawAvatar(vec2 playerPos);

@@ -26,6 +26,7 @@ public:
 
 	std::vector<MapRegion> regs;
 	std::vector<Bullet> bullets;
+	std::vector<vec2> enemies;
 
 
 	void update(vec2 playerPos);
