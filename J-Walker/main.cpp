@@ -36,6 +36,9 @@ void genRegion();
 void selectGrass();
 void selectWater();
 void selectEmpty();
+void selectSpawnOne();
+void selectSpawnTwo();
+void selectSpawnThree();
 
 
 
@@ -100,6 +103,30 @@ int main()
 	emptyTileBut.imgs[0] = TextureLoader::empty_tile_img;
 	emptyTileBut.imgs[1] = TextureLoader::empty_tile_img;
 
+	Button spawnerButOne;
+	spawnerButOne.transform.pos = { 650, 25 };
+	spawnerButOne.size = { 50, 50 };
+	spawnerButOne.transform.disfigure = spawnerButOne.size;
+	spawnerButOne.callback = &selectSpawnOne;
+	spawnerButOne.imgs[0] = TextureLoader::spawner_button;
+	spawnerButOne.imgs[1] = TextureLoader::spawner_button;
+
+	Button spawnerButTwo;
+	spawnerButTwo.transform.pos = { 700, 25 };
+	spawnerButTwo.size = { 50, 50 };
+	spawnerButTwo.transform.disfigure = spawnerButTwo.size;
+	spawnerButTwo.callback = &selectSpawnTwo;
+	spawnerButTwo.imgs[0] = TextureLoader::spawner_button;
+	spawnerButTwo.imgs[1] = TextureLoader::spawner_button;
+
+	Button spawnerButThree;
+	spawnerButThree.transform.pos = { 750, 25 };
+	spawnerButThree.size = { 50, 50 };
+	spawnerButThree.transform.disfigure = spawnerButThree.size;
+	spawnerButThree.callback = &selectSpawnThree;
+	spawnerButThree.imgs[0] = TextureLoader::spawner_button;
+	spawnerButThree.imgs[1] = TextureLoader::spawner_button;
+
 	
 
 
@@ -162,6 +189,19 @@ int main()
 				selectPos = {floor((selectPos.x) / 40) * 40,
 							 floor((selectPos.y) / 40) * 40 };
 				Box::draw(player.transform.pos, selectPos, { 40, 40 }, WHITE);
+
+				if (newReg.spawners[0].usable)
+				{
+					spawnerButOne.draw();
+				}
+				if (newReg.spawners[1].usable)
+				{
+					spawnerButTwo.draw();
+				}
+				if (newReg.spawners[2].usable)
+				{
+					spawnerButThree.draw();
+				}
 
 				if (sfw::getMouseButton(0))
 				{
@@ -265,6 +305,18 @@ int main()
 			grassTileBut.update();
 			waterTileBut.update();
 			emptyTileBut.update();
+			if (newReg.spawners[0].usable)
+			{
+				spawnerButOne.update();
+			}
+			if (newReg.spawners[1].usable)
+			{
+				spawnerButTwo.update();
+			}
+			if (newReg.spawners[2].usable)
+			{
+				spawnerButThree.update();
+			}
 
 			
 			vec2 selectPos = { sfw::getMouseX(), sfw::getMouseY() };
@@ -273,12 +325,19 @@ int main()
 			//Box::draw(selectPos, { 40, 40 }, WHITE);
 			vec2 regPos = { (selectPos.x - 50) / 40, (selectPos.y - 150) / 40 };
 
-			if (sfw::getMouseButton(0) && regPos.x >= 0 && regPos.x < 10 && regPos.y >= 0 && regPos.y < 10 &&
-				newReg.tileCounts[editTileType] > 0)
+			if (sfw::getMouseButton(0) && regPos.x >= 0 && regPos.x < 10 && regPos.y >= 0 && regPos.y < 10)
 			{
-				++newReg.tileCounts[newReg.tiles[(int)regPos.x + (int)regPos.y * 10]];
-				newReg.tiles[(int)regPos.x + (int)regPos.y * 10] = editTileType;
-				--newReg.tileCounts[editTileType];
+				if (editTileType < 3 && newReg.tileCounts[editTileType] > 0)
+				{
+					++newReg.tileCounts[newReg.tiles[(int)regPos.x + (int)regPos.y * 10]];
+					newReg.tiles[(int)regPos.x + (int)regPos.y * 10] = editTileType;
+					--newReg.tileCounts[editTileType];
+				}
+				else
+				{
+					newReg.spawners[editTileType - 3].active = true;
+					newReg.spawners[editTileType - 3].transform.pos = vec2{ regPos.x * 40 + 20, regPos.y * 40 + 20 };
+				}
 			}
 
 
@@ -289,6 +348,18 @@ int main()
 			grassTileBut.draw();
 			waterTileBut.draw();
 			emptyTileBut.draw();
+			if (newReg.spawners[0].usable)
+			{
+				spawnerButOne.draw();
+			}
+			if (newReg.spawners[1].usable)
+			{
+				spawnerButTwo.draw();
+			}
+			if (newReg.spawners[2].usable)
+			{
+				spawnerButThree.draw();
+			}
 			newReg.drawAvatar({ newReg.transform.pos.x * 400 + 350, newReg.transform.pos.y * 400 + 150 });
 			world.drawEdit(newReg.transform.pos);
 		}
@@ -380,6 +451,12 @@ void genRegion()
 		newReg.tileCounts[0] = 200;
 		newReg.tileCounts[1] = amtGrass;
 		newReg.tileCounts[2] = amtWater;
+
+		int spawners = rand() % 3 + 1;
+		for (int i = 0; i < spawners; ++i)
+		{
+			newReg.spawners[i].usable = true;
+		}
 	}
 }
 
@@ -396,4 +473,19 @@ void selectWater()
 void selectEmpty()
 {
 	editTileType = 0;
+}
+
+void selectSpawnOne()
+{
+	editTileType = 3;
+}
+
+void selectSpawnTwo()
+{
+	editTileType = 4;
+}
+
+void selectSpawnThree()
+{
+	editTileType = 5;
 }

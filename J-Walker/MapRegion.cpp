@@ -3,6 +3,8 @@
 
 #include <random>
 
+#include "sfwdraw.h"
+
 #include "Box.h"
 #include "TileRender.h"
 
@@ -17,7 +19,8 @@ MapRegion::MapRegion()
 
 	for (int i = 0; i < 3; ++i)
 	{
-		spawners[i].active = true;
+		spawners[i].usable = false;
+		spawners[i].active = false;
 		spawners[i].transform.parent = &transform;
 		spawners[i].cooldown = 10;
 		spawners[i].heat = (rand() % (int)(spawners[i].cooldown * 1000)) / 1000.0f;
@@ -36,6 +39,14 @@ MapRegion::~MapRegion()
 
 void MapRegion::drawAvatar(vec2 playerPos)
 {
+	for (int q = 0; q < 3; ++q)
+	{
+		if (spawners[q].active)
+		{
+			Box::draw(playerPos, spawners[q].transform.pos + transform.pos * 400, vec2{ 6, 6 }, RED);
+		}
+	}
+
 	for (int y = 0; y < 10; ++y)
 	{
 		for (int x = 0; x < 10; ++x)

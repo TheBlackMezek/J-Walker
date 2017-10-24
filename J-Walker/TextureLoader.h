@@ -41,6 +41,7 @@ public:
 	static int water90img;
 
 	static int empty_tile_img;
+	static int spawner_button;
 
 
 	static void init();

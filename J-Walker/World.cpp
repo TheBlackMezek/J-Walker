@@ -100,13 +100,6 @@ void World::drawAvatar(vec2 playerPos)
 
 	for (int i = 0; i < regs.size(); ++i)
 	{
-		for (int q = 0; q < 3; ++q)
-		{
-			if (regs[i].spawners[q].active)
-			{
-				Box::draw(playerPos, regs[i].spawners[q].transform.pos + regs[i].transform.pos * 400, vec2{ 6, 6 }, RED);
-			}
-		}
 		regs[i].drawAvatar(playerPos);
 	}
 }

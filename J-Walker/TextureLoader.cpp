@@ -31,6 +31,7 @@ int TextureLoader::water80img;
 int TextureLoader::water90img;
 
 int TextureLoader::empty_tile_img;
+int TextureLoader::spawner_button;
 
 
 
@@ -74,4 +75,5 @@ void TextureLoader::init()
 	water90img = sfw::loadTextureMap("90Water.png");
 
 	empty_tile_img = sfw::loadTextureMap("EmptyTile.png");
+	spawner_button = sfw::loadTextureMap("SpawnerButton.png");
 }

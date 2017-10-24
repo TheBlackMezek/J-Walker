@@ -8,6 +8,7 @@
 
 struct EnemySpawner
 {
+	bool usable;
 	bool active;
 	Transform transform;
 	float heat;

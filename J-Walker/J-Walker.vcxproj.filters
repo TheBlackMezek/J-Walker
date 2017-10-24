@@ -157,5 +157,8 @@
     <Image Include="EmptyTile.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="SpawnerButton.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
