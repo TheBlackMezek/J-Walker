@@ -40,6 +40,8 @@ public:
 	static int water80img;
 	static int water90img;
 
+	static int empty_tile_img;
+
 
 	static void init();
 };

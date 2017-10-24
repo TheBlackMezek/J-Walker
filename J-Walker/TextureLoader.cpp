@@ -30,6 +30,8 @@ int TextureLoader::water70img;
 int TextureLoader::water80img;
 int TextureLoader::water90img;
 
+int TextureLoader::empty_tile_img;
+
 
 
 TextureLoader::TextureLoader()
@@ -70,4 +72,6 @@ void TextureLoader::init()
 	water70img = sfw::loadTextureMap("70Water.png");
 	water80img = sfw::loadTextureMap("80Water.png");
 	water90img = sfw::loadTextureMap("90Water.png");
+
+	empty_tile_img = sfw::loadTextureMap("EmptyTile.png");
 }

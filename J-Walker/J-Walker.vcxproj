@@ -171,6 +171,7 @@
     <Image Include="AvatarButton2.png" />
     <Image Include="BackButton1.png" />
     <Image Include="BackButton2.png" />
+    <Image Include="EmptyTile.png" />
     <Image Include="GenButton1.png" />
     <Image Include="GenButton2.png" />
   </ItemGroup>

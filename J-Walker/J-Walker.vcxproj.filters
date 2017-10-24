@@ -154,5 +154,8 @@
     <Image Include="90Water.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="EmptyTile.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

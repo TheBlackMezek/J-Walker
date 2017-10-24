@@ -27,11 +27,15 @@ GameState state = WORLD_STATE;
 Player player;
 World world;
 MapRegion newReg;
+int editTileType = 0;
 
 
 void switchToAvatarMode();
 void switchToWorldMode();
 void genRegion();
+void selectGrass();
+void selectWater();
+void selectEmpty();
 
 
 
@@ -75,6 +79,26 @@ int main()
 	genRegBut.callback = &genRegion;
 	genRegBut.imgs[0] = TextureLoader::gen_button_1;
 	genRegBut.imgs[1] = TextureLoader::gen_button_2;
+
+	Button grassTileBut;
+	grassTileBut.transform.pos = { 400, 25 };
+	grassTileBut.size = { 100, 50 };
+	grassTileBut.transform.disfigure = grassTileBut.size;
+	grassTileBut.callback = &selectGrass;
+
+	Button waterTileBut;
+	waterTileBut.transform.pos = { 500, 25 };
+	waterTileBut.size = { 100, 50 };
+	waterTileBut.transform.disfigure = waterTileBut.size;
+	waterTileBut.callback = &selectWater;
+
+	Button emptyTileBut;
+	emptyTileBut.transform.pos = { 600, 25 };
+	emptyTileBut.size = { 50, 50 };
+	emptyTileBut.transform.disfigure = emptyTileBut.size;
+	emptyTileBut.callback = &selectEmpty;
+	emptyTileBut.imgs[0] = TextureLoader::empty_tile_img;
+	emptyTileBut.imgs[1] = TextureLoader::empty_tile_img;
 
 	
 
@@ -167,6 +191,63 @@ int main()
 					if (valid && found)
 					{
 						state = EDIT_STATE;
+						switch (newReg.tileCounts[0])
+						{
+						case 10:
+							grassTileBut.imgs[0] = TextureLoader::grass10img;
+							grassTileBut.imgs[1] = TextureLoader::grass10img;
+							waterTileBut.imgs[0] = TextureLoader::water90img;
+							waterTileBut.imgs[1] = TextureLoader::water90img;
+							break;
+						case 20:
+							grassTileBut.imgs[0] = TextureLoader::grass20img;
+							grassTileBut.imgs[1] = TextureLoader::grass20img;
+							waterTileBut.imgs[0] = TextureLoader::water80img;
+							waterTileBut.imgs[1] = TextureLoader::water80img;
+							break;
+						case 30:
+							grassTileBut.imgs[0] = TextureLoader::grass30img;
+							grassTileBut.imgs[1] = TextureLoader::grass30img;
+							waterTileBut.imgs[0] = TextureLoader::water70img;
+							waterTileBut.imgs[1] = TextureLoader::water70img;
+							break;
+						case 40:
+							grassTileBut.imgs[0] = TextureLoader::grass40img;
+							grassTileBut.imgs[1] = TextureLoader::grass40img;
+							waterTileBut.imgs[0] = TextureLoader::water60img;
+							waterTileBut.imgs[1] = TextureLoader::water60img;
+							break;
+						case 50:
+							grassTileBut.imgs[0] = TextureLoader::grass50img;
+							grassTileBut.imgs[1] = TextureLoader::grass50img;
+							waterTileBut.imgs[0] = TextureLoader::water50img;
+							waterTileBut.imgs[1] = TextureLoader::water50img;
+							break;
+						case 60:
+							grassTileBut.imgs[0] = TextureLoader::grass60img;
+							grassTileBut.imgs[1] = TextureLoader::grass60img;
+							waterTileBut.imgs[0] = TextureLoader::water40img;
+							waterTileBut.imgs[1] = TextureLoader::water40img;
+							break;
+						case 70:
+							grassTileBut.imgs[0] = TextureLoader::grass70img;
+							grassTileBut.imgs[1] = TextureLoader::grass70img;
+							waterTileBut.imgs[0] = TextureLoader::water30img;
+							waterTileBut.imgs[1] = TextureLoader::water30img;
+							break;
+						case 80:
+							grassTileBut.imgs[0] = TextureLoader::grass80img;
+							grassTileBut.imgs[1] = TextureLoader::grass80img;
+							waterTileBut.imgs[0] = TextureLoader::water20img;
+							waterTileBut.imgs[1] = TextureLoader::water20img;
+							break;
+						case 90:
+							grassTileBut.imgs[0] = TextureLoader::grass90img;
+							grassTileBut.imgs[1] = TextureLoader::grass90img;
+							waterTileBut.imgs[0] = TextureLoader::water10img;
+							waterTileBut.imgs[1] = TextureLoader::water10img;
+							break;
+						}
 					}
 				}
 			}
@@ -177,9 +258,19 @@ int main()
 		}
 		else if (state == EDIT_STATE)
 		{
-			worldModeBut.update();
+			//worldModeBut.update();
+			grassTileBut.update();
+			waterTileBut.update();
+			emptyTileBut.update();
 
-			worldModeBut.draw();
+			
+
+
+
+			//worldModeBut.draw();
+			grassTileBut.draw();
+			waterTileBut.draw();
+			emptyTileBut.draw();
 			newReg.drawAvatar(player.transform.pos + vec2{330, 130});
 			world.drawEdit(newReg.transform.pos);
 		}
@@ -235,4 +326,19 @@ void genRegion()
 		newReg.tileCounts[0] = amtGrass;
 		newReg.tileCounts[1] = amtWater;
 	}
+}
+
+void selectGrass()
+{
+	editTileType = 1;
+}
+
+void selectWater()
+{
+	editTileType = 2;
+}
+
+void selectEmpty()
+{
+	editTileType = 0;
 }
