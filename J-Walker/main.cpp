@@ -52,7 +52,7 @@ int main()
 
 	TextureLoader::init();
 
-	newReg.tileCounts[0] = 200;
+	newReg.tileCounts[0] = 0;
 
 
 
@@ -115,9 +115,9 @@ int main()
 
 
 
-			if (newReg.tileCounts[0] != 200)
+			if (newReg.tileCounts[0] != 0)
 			{
-				switch (newReg.tileCounts[0])
+				switch (newReg.tileCounts[1])
 				{
 				case 10:
 					sfw::drawTexture(TextureLoader::grass10img, 400, 25, 100, 50);
@@ -191,7 +191,7 @@ int main()
 					if (valid && found)
 					{
 						state = EDIT_STATE;
-						switch (newReg.tileCounts[0])
+						switch (newReg.tileCounts[1])
 						{
 						case 10:
 							grassTileBut.imgs[0] = TextureLoader::grass10img;
@@ -258,20 +258,38 @@ int main()
 		}
 		else if (state == EDIT_STATE)
 		{
-			//worldModeBut.update();
+			if (newReg.tileCounts[1] == 0 && newReg.tileCounts[2] == 0)
+			{
+				worldModeBut.update();
+			}
 			grassTileBut.update();
 			waterTileBut.update();
 			emptyTileBut.update();
 
 			
+			vec2 selectPos = { sfw::getMouseX(), sfw::getMouseY() };
+			selectPos = { floor((selectPos.x - 10) / 40) * 40 + 10,
+				floor((selectPos.y + 10) / 40) * 40 - 10 };
+			//Box::draw(selectPos, { 40, 40 }, WHITE);
+			vec2 regPos = { (selectPos.x - 50) / 40, (selectPos.y - 150) / 40 };
+
+			if (sfw::getMouseButton(0) && regPos.x >= 0 && regPos.x < 10 && regPos.y >= 0 && regPos.y < 10 &&
+				newReg.tileCounts[editTileType] > 0)
+			{
+				++newReg.tileCounts[newReg.tiles[(int)regPos.x + (int)regPos.y * 10]];
+				newReg.tiles[(int)regPos.x + (int)regPos.y * 10] = editTileType;
+				--newReg.tileCounts[editTileType];
+			}
 
 
-
-			//worldModeBut.draw();
+			if (newReg.tileCounts[1] == 0 && newReg.tileCounts[2] == 0)
+			{
+				worldModeBut.draw();
+			}
 			grassTileBut.draw();
 			waterTileBut.draw();
 			emptyTileBut.draw();
-			newReg.drawAvatar(player.transform.pos + vec2{330, 130});
+			newReg.drawAvatar({ newReg.transform.pos.x * 400 + 350, newReg.transform.pos.y * 400 + 150 });
 			world.drawEdit(newReg.transform.pos);
 		}
 		else if (state == PLAY_STATE)
@@ -306,12 +324,13 @@ void switchToWorldMode()
 {
 	state = WORLD_STATE;
 	player.transform.pos = { 20,20 };
-	newReg.tileCounts[0] = 200;
+	newReg.tileCounts[0] = 0;
+	world.regs.push_back(newReg);
 }
 
 void genRegion()
 {
-	if (newReg.tileCounts[0] == 200)
+	if (newReg.tileCounts[0] == 0)
 	{
 		for (int i = 0; i < 100; ++i)
 		{
@@ -323,8 +342,9 @@ void genRegion()
 
 		int amtWater = 100 - amtGrass;
 
-		newReg.tileCounts[0] = amtGrass;
-		newReg.tileCounts[1] = amtWater;
+		newReg.tileCounts[0] = 200;
+		newReg.tileCounts[1] = amtGrass;
+		newReg.tileCounts[2] = amtWater;
 	}
 }
 

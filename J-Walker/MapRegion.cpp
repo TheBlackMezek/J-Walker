@@ -33,8 +33,8 @@ void MapRegion::drawAvatar(vec2 playerPos)
 		for (int x = 0; x < 10; ++x)
 		{
 			TileRender::draw(playerPos,
-					{ (float)x * tileSizeAvatar,
-					  (float)y * tileSizeAvatar },
+					{ (float)x * tileSizeAvatar + transform.pos.x * 400,
+					  (float)y * tileSizeAvatar + transform.pos.y * 400 },
 					{ tileSizeAvatar,tileSizeAvatar },
 					  tiles[x + y * 10]);
 		}
@@ -49,8 +49,8 @@ void MapRegion::drawWorld(vec2 playerPos)
 		{
 			tiles[x + y * 10];
 			TileRender::draw(playerPos,
-					{ (float)x * tileSizeWorld,
-					  (float)y * tileSizeWorld },
+					{ (float)x * tileSizeWorld + transform.pos.x * 40,
+					  (float)y * tileSizeWorld + transform.pos.y * 40 },
 					{ tileSizeWorld,tileSizeWorld },
 					  tiles[x + y * 10]);
 		}
