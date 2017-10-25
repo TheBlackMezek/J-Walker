@@ -509,14 +509,17 @@ void selectEmpty()
 void selectSpawnOne()
 {
 	editTileType = 3;
+	newReg.spawners[0].active = false;
 }
 
 void selectSpawnTwo()
 {
 	editTileType = 4;
+	newReg.spawners[1].active = false;
 }
 
 void selectSpawnThree()
 {
 	editTileType = 5;
+	newReg.spawners[2].active = false;
 }
