@@ -40,7 +40,10 @@ MapRegion::~MapRegion()
 
 void MapRegion::drawAvatar(vec2 playerPos)
 {
-	if (distance({transform.pos.x * 400 + 200, transform.pos.y * 400 + 200}, playerPos) < 800)
+	vec2 mid = { transform.pos.x * 400 + 200, transform.pos.y * 400 + 200 };
+	if (	mid.x > playerPos.x - 600 && mid.x < playerPos.x + 600
+		&&	mid.y > playerPos.y - 500 && mid.y < playerPos.y + 500)
+	//if (distance({transform.pos.x * 400 + 200, transform.pos.y * 400 + 200}, playerPos) < 800)
 	{
 		for (int q = 0; q < 3; ++q)
 		{
