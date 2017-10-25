@@ -446,6 +446,7 @@ void genRegion()
 		for (int i = 0; i < 3; ++i)
 		{
 			newReg.spawners[i].active = false;
+			newReg.spawners[i].usable = false;
 		}
 
 		int amtGrass = rand() % 9 + 1;
