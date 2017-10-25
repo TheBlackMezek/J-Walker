@@ -206,7 +206,6 @@ int main()
 				selectPos = selectPos + player.transform.pos;
 				selectPos = {floor((selectPos.x) / 40) * 40,
 							 floor((selectPos.y) / 40) * 40 };
-				Box::draw(player.transform.pos, selectPos, { 40, 40 }, WHITE);
 
 				if (newReg.spawners[0].usable)
 				{
@@ -221,30 +220,33 @@ int main()
 					spawnerButThree.draw();
 				}
 
+
+				vec2 gridPos = selectPos / 40;
+				newReg.transform.pos = gridPos;
+
+				bool found = false;
+				bool valid = true;
+
+				float goodDist = distance({ 1, 0 }, { 0, 0 });
+
+				for (int i = 0; i < world.regs.size(); ++i)
+				{
+					vec2 regPos = world.regs[i].transform.pos;
+					float dist = distance(regPos, gridPos);
+					if (regPos.x == gridPos.x && regPos.y == gridPos.y)
+					{
+						valid = false;
+						break;
+					}
+					else if (dist == goodDist)
+					{
+						found = true;
+					}
+				}
+
+
 				if (sfw::getMouseButton(0))
 				{
-					selectPos = selectPos / 40;
-					newReg.transform.pos = selectPos;
-
-					bool found = false;
-					bool valid = true;
-
-					float goodDist = distance({ 1, 0 }, { 0, 0 });
-
-					for (int i = 0; i < world.regs.size(); ++i)
-					{
-						vec2 regPos = world.regs[i].transform.pos;
-						float dist = distance(regPos, selectPos);
-						if (regPos.x == selectPos.x && regPos.y == selectPos.y)
-						{
-							valid = false;
-							break;
-						}
-						else if (dist == goodDist)
-						{
-							found = true;
-						}
-					}
 
 					if (valid && found)
 					{
@@ -308,6 +310,11 @@ int main()
 						}
 					}
 				}
+
+				int drawColor = (valid && found) ? GREEN : WHITE;
+
+				Box::draw(player.transform.pos, selectPos, { 40, 40 }, drawColor);
+
 			}
 
 			avatarModeBut.draw();
