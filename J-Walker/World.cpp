@@ -51,13 +51,13 @@ void World::update(vec2 playerPos)
 		}
 		else if(!hit)
 		{
-			bullets[i].pos = bullets[i].pos + bullets[i].vel;
+			bullets[i].pos = bullets[i].pos + bullets[i].vel * delta;
 		}
 	}
 
 	for (int i = 0; i < enemies.size(); ++i)
 	{
-		vec2 vel = normal(playerPos - enemies[i]) * 5;
+		vec2 vel = normal(playerPos - enemies[i]) * 40 * delta;
 		enemies[i] = enemies[i] + vel;
 	}
 

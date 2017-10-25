@@ -373,7 +373,7 @@ int main()
 				b.pos = player.transform.pos;
 				vec2 v = { sfw::getMouseX(), sfw::getMouseY() };
 				v = v - vec2{400, 300};
-				v = normal(v) * 40;
+				v = normal(v) * 400;
 				b.vel = v;
 				b.lifeTime = 0;
 				b.lifeMax = 2;
@@ -431,6 +431,7 @@ void switchToWorldMode()
 	state = WORLD_STATE;
 	player.transform.pos = { 20,20 };
 	newReg.tileCounts[0] = 0;
+	editTileType = 0;
 	world.regs.push_back(newReg);
 }
 
@@ -456,7 +457,7 @@ void genRegion()
 		newReg.tileCounts[1] = amtGrass;
 		newReg.tileCounts[2] = amtWater;
 
-		int spawners = rand() % 3 + 1;
+		int spawners = rand() % 4;
 		for (int i = 0; i < spawners; ++i)
 		{
 			newReg.spawners[i].usable = true;

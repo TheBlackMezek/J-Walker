@@ -14,7 +14,8 @@ MapRegion::MapRegion()
 {
 	for (int i = 0; i < 100; ++i)
 	{
-		tiles[i] = rand() % 2 + 1;
+		//tiles[i] = rand() % 2 + 1;
+		tiles[i] = 1;
 	}
 
 	for (int i = 0; i < 3; ++i)
