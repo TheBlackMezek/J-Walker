@@ -40,23 +40,26 @@ MapRegion::~MapRegion()
 
 void MapRegion::drawAvatar(vec2 playerPos)
 {
-	for (int q = 0; q < 3; ++q)
+	if (distance({transform.pos.x * 400 + 200, transform.pos.y * 400 + 200}, playerPos) < 800)
 	{
-		if (spawners[q].active)
+		for (int q = 0; q < 3; ++q)
 		{
-			Box::draw(playerPos, spawners[q].transform.pos + transform.pos * 400, vec2{ 6, 6 }, RED);
+			if (spawners[q].active)
+			{
+				Box::draw(playerPos, spawners[q].transform.pos + transform.pos * 400, vec2{ 6, 6 }, RED);
+			}
 		}
-	}
 
-	for (int y = 0; y < 10; ++y)
-	{
-		for (int x = 0; x < 10; ++x)
+		for (int y = 0; y < 10; ++y)
 		{
-			TileRender::draw(playerPos,
-					{ (float)x * tileSizeAvatar + transform.pos.x * 400,
-					  (float)y * tileSizeAvatar + transform.pos.y * 400 },
-					{ tileSizeAvatar,tileSizeAvatar },
-					  tiles[x + y * 10]);
+			for (int x = 0; x < 10; ++x)
+			{
+				TileRender::draw(playerPos,
+				{ (float)x * tileSizeAvatar + transform.pos.x * 400,
+				  (float)y * tileSizeAvatar + transform.pos.y * 400 },
+				  { tileSizeAvatar,tileSizeAvatar },
+					tiles[x + y * 10]);
+			}
 		}
 	}
 }
