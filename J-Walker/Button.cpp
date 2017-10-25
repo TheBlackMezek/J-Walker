@@ -19,6 +19,7 @@ Button::Button()
 	imgs[1] = 0;
 
 	mouseOver = false;
+	useColors = false;
 }
 
 
@@ -54,6 +55,12 @@ void Button::draw()
 	
 	m = translation({ size.x / 2, size.y / 2 }) * m;
 
-	sfw::drawTextureMatrix3(imgs[mouseOver], 0U, WHITE, m.m);
+	int color = WHITE;
+	if (useColors)
+	{
+		color = colors[mouseOver];
+	}
+
+	sfw::drawTextureMatrix3(imgs[mouseOver], 0U, color, m.m);
 	//sfw::drawTexture(imgs[mouseOver], transform.pos.x, transform.pos.y, size.x, size.y);
 }

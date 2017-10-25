@@ -88,12 +88,18 @@ int main()
 	grassTileBut.size = { 100, 50 };
 	grassTileBut.transform.disfigure = grassTileBut.size;
 	grassTileBut.callback = &selectGrass;
+	grassTileBut.useColors = true;
+	grassTileBut.colors[0] = WHITE;
+	grassTileBut.colors[1] = GREEN;
 
 	Button waterTileBut;
 	waterTileBut.transform.pos = { 500, 25 };
 	waterTileBut.size = { 100, 50 };
 	waterTileBut.transform.disfigure = waterTileBut.size;
 	waterTileBut.callback = &selectWater;
+	waterTileBut.useColors = true;
+	waterTileBut.colors[0] = WHITE;
+	waterTileBut.colors[1] = BLUE;
 
 	Button emptyTileBut;
 	emptyTileBut.transform.pos = { 600, 25 };
@@ -102,6 +108,9 @@ int main()
 	emptyTileBut.callback = &selectEmpty;
 	emptyTileBut.imgs[0] = TextureLoader::empty_tile_img;
 	emptyTileBut.imgs[1] = TextureLoader::empty_tile_img;
+	emptyTileBut.useColors = true;
+	emptyTileBut.colors[0] = WHITE;
+	emptyTileBut.colors[1] = GREEN;
 
 	Button spawnerButOne;
 	spawnerButOne.transform.pos = { 650, 25 };
@@ -110,6 +119,9 @@ int main()
 	spawnerButOne.callback = &selectSpawnOne;
 	spawnerButOne.imgs[0] = TextureLoader::spawner_button;
 	spawnerButOne.imgs[1] = TextureLoader::spawner_button;
+	spawnerButOne.useColors = true;
+	spawnerButOne.colors[0] = WHITE;
+	spawnerButOne.colors[1] = RED;
 
 	Button spawnerButTwo;
 	spawnerButTwo.transform.pos = { 700, 25 };
@@ -118,6 +130,9 @@ int main()
 	spawnerButTwo.callback = &selectSpawnTwo;
 	spawnerButTwo.imgs[0] = TextureLoader::spawner_button;
 	spawnerButTwo.imgs[1] = TextureLoader::spawner_button;
+	spawnerButTwo.useColors = true;
+	spawnerButTwo.colors[0] = WHITE;
+	spawnerButTwo.colors[1] = RED;
 
 	Button spawnerButThree;
 	spawnerButThree.transform.pos = { 750, 25 };
@@ -126,6 +141,9 @@ int main()
 	spawnerButThree.callback = &selectSpawnThree;
 	spawnerButThree.imgs[0] = TextureLoader::spawner_button;
 	spawnerButThree.imgs[1] = TextureLoader::spawner_button;
+	spawnerButThree.useColors = true;
+	spawnerButThree.colors[0] = WHITE;
+	spawnerButThree.colors[1] = RED;
 
 	
 

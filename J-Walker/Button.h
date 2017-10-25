@@ -13,6 +13,8 @@ public:
 	~Button();
 
 	int imgs[2];
+	int colors[2];
+	bool useColors;
 
 	//vec2 pos;
 	Transform transform;
