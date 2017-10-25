@@ -13,7 +13,7 @@ public:
 	TileRender();
 	~TileRender();
 
-	static void draw(vec2 playerPos, vec2 pos, vec2 size, int type);
-	static void draw(vec2 pos, vec2 size, int type);
+	static void draw(vec2 playerPos, vec2 pos, vec2 size, int type, bool worldMode);
+	static void draw(vec2 pos, vec2 size, int type, bool worldMode);
 };
 

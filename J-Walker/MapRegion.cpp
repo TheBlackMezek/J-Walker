@@ -61,7 +61,7 @@ void MapRegion::drawAvatar(vec2 playerPos)
 				{ (float)x * tileSizeAvatar + transform.pos.x * 400,
 				  (float)y * tileSizeAvatar + transform.pos.y * 400 },
 				  { tileSizeAvatar,tileSizeAvatar },
-					tiles[x + y * 10]);
+					tiles[x + y * 10], false);
 			}
 		}
 	}
@@ -78,7 +78,7 @@ void MapRegion::drawWorld(vec2 playerPos)
 					{ (float)x * tileSizeWorld + transform.pos.x * 40,
 					  (float)y * tileSizeWorld + transform.pos.y * 40 },
 					{ tileSizeWorld,tileSizeWorld },
-					  tiles[x + y * 10]);
+					  tiles[x + y * 10], true);
 		}
 	}
 }
