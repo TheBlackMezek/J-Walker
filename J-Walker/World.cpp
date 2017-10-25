@@ -75,8 +75,11 @@ void World::update(vec2 playerPos)
 				if (regs[i].spawners[q].heat == 0)
 				{
 					regs[i].spawners[q].heat = regs[i].spawners[q].cooldown;
-					vec2 enemy = regs[i].spawners[q].transform.pos + regs[i].transform.pos * 400;
-					enemies.push_back(enemy);
+					if (distance(playerPos, regs[i].spawners[q].transform.pos) < 600)
+					{
+						vec2 enemy = regs[i].spawners[q].transform.pos + regs[i].transform.pos * 400;
+						enemies.push_back(enemy);
+					}
 				}
 			}
 		}
