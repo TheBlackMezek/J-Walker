@@ -22,15 +22,18 @@ public:
 	MapRegion();
 	~MapRegion();
 
-	size_t tiles[100];
 	size_t tileCounts[3];
 	EnemySpawner spawners[3];
 	Transform transform;
 
 	void drawAvatar(vec2 playerPos);
 	void drawWorld(vec2 playerPos);
+	void setTile(int x, int y, int type);
+	void setTile(int idx, int type);
+	int getTile(int x, int y);
 
 private:
+	size_t tiles[100];
 	float tileSizeAvatar;
 	float tileSizeWorld;
 };

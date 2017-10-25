@@ -329,11 +329,11 @@ int main()
 			{
 				if (editTileType < 3 && newReg.tileCounts[editTileType] > 0)
 				{
-					++newReg.tileCounts[newReg.tiles[(int)regPos.x + (int)regPos.y * 10]];
-					newReg.tiles[(int)regPos.x + (int)regPos.y * 10] = editTileType;
+					++newReg.tileCounts[newReg.getTile((int)regPos.x, (int)regPos.y)];
+					newReg.setTile((int)regPos.x, (int)regPos.y, editTileType);
 					--newReg.tileCounts[editTileType];
 				}
-				else
+				else if(editTileType >= 3)
 				{
 					newReg.spawners[editTileType - 3].active = true;
 					newReg.spawners[editTileType - 3].transform.pos = vec2{ regPos.x * 40 + 20, regPos.y * 40 + 20 };
@@ -440,7 +440,11 @@ void genRegion()
 	{
 		for (int i = 0; i < 100; ++i)
 		{
-			newReg.tiles[i] = 0;
+			newReg.setTile(i, 0);
+		}
+		for (int i = 0; i < 3; ++i)
+		{
+			newReg.spawners[i].active = false;
 		}
 
 		int amtGrass = rand() % 9 + 1;

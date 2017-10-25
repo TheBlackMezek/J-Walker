@@ -76,6 +76,21 @@ void MapRegion::drawWorld(vec2 playerPos)
 	}
 }
 
+void MapRegion::setTile(int x, int y, int type)
+{
+	setTile(x + y * 10, type);
+}
+
+void MapRegion::setTile(int idx, int type)
+{
+	tiles[idx] = type;
+}
+
+int MapRegion::getTile(int x, int y)
+{
+	return tiles[x + y * 10];
+}
+
 //void MapRegion::draw()
 //{
 //	for (int y = 0; y < 10; ++y)

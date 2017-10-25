@@ -47,12 +47,10 @@ void World::update(vec2 playerPos)
 
 		if (!hit && bullets[i].lifeTime > bullets[i].lifeMax)
 		{
-			std::cout << "Erasing" << std::endl;
 			bullets.erase(bullets.begin() + i);
 		}
 		else if(!hit)
 		{
-			std::cout << "Moving" << std::endl;
 			bullets[i].pos = bullets[i].pos + bullets[i].vel;
 		}
 	}
