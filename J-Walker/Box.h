@@ -15,5 +15,8 @@ public:
 	static void draw(vec2 playerPos, vec2 pos, vec2 size);
 	static void draw(vec2 playerPos, vec2 pos, vec2 size, size_t color);
 	static void draw(vec2 pos, vec2 size, size_t color);
+
+	static void drawTexture(int texId, vec2 playerPos, vec2 pos, vec2 size);
+	static void drawTexture(int texId, vec2 pos, vec2 size);
 };
 

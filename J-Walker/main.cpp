@@ -417,8 +417,8 @@ int main()
 
 
 
-			world.drawAvatar(player.transform.pos);
 			player.draw();
+			world.drawAvatar(player.transform.pos);
 
 			if (sfw::getKey(KEY_ESCAPE))
 			{

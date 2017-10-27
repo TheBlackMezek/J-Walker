@@ -43,6 +43,17 @@ public:
 	static int empty_tile_img;
 	static int spawner_button;
 
+	static int grassImg;
+	static int waterImg;
+	static int forestImg;
+	static int mountainImg;
+	static int hillImg;
+	static int desertImg;
+	static int marshImg;
+	
+	static int leftArrowImg;
+	static int rightArrowImg;
+
 
 	static void init();
 };

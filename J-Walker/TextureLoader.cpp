@@ -33,6 +33,17 @@ int TextureLoader::water90img;
 int TextureLoader::empty_tile_img;
 int TextureLoader::spawner_button;
 
+int TextureLoader::grassImg;
+int TextureLoader::waterImg;
+int TextureLoader::forestImg;
+int TextureLoader::mountainImg;
+int TextureLoader::hillImg;
+int TextureLoader::desertImg;
+int TextureLoader::marshImg;
+
+int TextureLoader::leftArrowImg;
+int TextureLoader::rightArrowImg;
+
 
 
 TextureLoader::TextureLoader()
@@ -76,4 +87,16 @@ void TextureLoader::init()
 
 	empty_tile_img = sfw::loadTextureMap("EmptyTile.png");
 	spawner_button = sfw::loadTextureMap("SpawnerButton.png");
+
+	grassImg = sfw::loadTextureMap("GrassTile.png");
+	waterImg = sfw::loadTextureMap("WaterTile.png");
+	forestImg = sfw::loadTextureMap("ForestTile.png");
+	mountainImg = sfw::loadTextureMap("MountainTile.png");
+	hillImg = sfw::loadTextureMap("HillTile.png");
+	grassImg = sfw::loadTextureMap("GrassTile.png");
+	desertImg = sfw::loadTextureMap("DesertTile.png");
+	marshImg = sfw::loadTextureMap("MarshTile.png");
+
+	leftArrowImg = sfw::loadTextureMap("LeftArrow.png");
+	rightArrowImg = sfw::loadTextureMap("RightArrow.png");
 }

@@ -4,6 +4,7 @@
 #include "sfwdraw.h"
 
 #include "Line.h"
+#include "TextureLoader.h"
 
 
 
@@ -60,4 +61,20 @@ void Box::draw(vec2 pos, vec2 size, size_t color)
 	Line::draw(botRight, topRight, color);
 	Line::draw(topRight, topLeft, color);
 	Line::draw(topLeft, botLeft, color);
+}
+
+void Box::drawTexture(int texId, vec2 playerPos, vec2 pos, vec2 size)
+{
+	pos.x = 400 - (playerPos.x - pos.x) + size.x / 2;
+	pos.y = 300 - (playerPos.y - pos.y) + size.y / 2;
+
+	sfw::drawTexture(texId, pos.x, pos.y, size.x, size.y);
+}
+
+void Box::drawTexture(int texId, vec2 pos, vec2 size)
+{
+	pos.x = pos.x + size.x / 2;
+	pos.y = pos.y + size.y / 2;
+
+	sfw::drawTexture(texId, pos.x, pos.y, size.x, size.y);
 }

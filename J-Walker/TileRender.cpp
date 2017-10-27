@@ -6,6 +6,7 @@
 #include "Box.h"
 #include "Line.h"
 #include "Circle.h"
+#include "TextureLoader.h"
 
 
 TileRender::TileRender()
@@ -26,38 +27,17 @@ void TileRender::draw(vec2 playerPos, vec2 pos, vec2 size, int type, bool worldM
 	vec2 topLeft = { pos.x, pos.y + size.y };
 	vec2 topRight = { pos.x + size.x, pos.y + size.y };
 
-	if (worldMode)
+	switch (type)
 	{
-		switch (type)
-		{
-		case 1:
-			Box::draw(playerPos, pos, size, GREEN);
-			break;
-		case 2:
-			Box::draw(playerPos, pos, size, BLUE);
-			break;
-		default:
-			Box::draw(playerPos, pos, size);
-			break;
-		}
-	}
-	else
-	{
-		switch (type)
-		{
-		case 1:
-			Box::draw(playerPos, pos, size, GREEN);
-			Line::draw(playerPos, botLeft, topRight, GREEN);
-			Line::draw(playerPos, botRight, topLeft, GREEN);
-			break;
-		case 2:
-			Box::draw(playerPos, pos, size, BLUE);
-			//Circle::draw(playerPos, { pos.x + size.x / 2, pos.y + size.y / 2 }, size.x / 2, BLUE);
-			break;
-		default:
-			Box::draw(playerPos, pos, size);
-			break;
-		}
+	case 1:
+		Box::drawTexture(TextureLoader::grassImg, playerPos, pos, size);
+		break;
+	case 2:
+		Box::drawTexture(TextureLoader::waterImg, playerPos, pos, size);
+		break;
+	default:
+		Box::draw(playerPos, pos, size);
+		break;
 	}
 }
 
@@ -68,37 +48,16 @@ void TileRender::draw(vec2 pos, vec2 size, int type, bool worldMode)
 	vec2 topLeft = { pos.x, pos.y + size.y };
 	vec2 topRight = { pos.x + size.x, pos.y + size.y };
 
-	if (worldMode)
+	switch (type)
 	{
-		switch (type)
-		{
-		case 1:
-			Box::draw(pos, size, GREEN);
-			break;
-		case 2:
-			Box::draw(pos, size, BLUE);
-			break;
-		default:
-			Box::draw(pos, size);
-			break;
-		}
-	}
-	else
-	{
-		switch (type)
-		{
-		case 1:
-			Box::draw(pos, size, GREEN);
-			Line::draw(botLeft, topRight, GREEN);
-			Line::draw(botRight, topLeft, GREEN);
-			break;
-		case 2:
-			Box::draw(pos, size, BLUE);
-			//Circle::draw({ pos.x + size.x / 2, pos.y + size.y / 2 }, size.x / 2, BLUE);
-			break;
-		default:
-			Box::draw(pos, size);
-			break;
-		}
+	case 1:
+		Box::drawTexture(TextureLoader::grassImg, pos, size);
+		break;
+	case 2:
+		Box::drawTexture(TextureLoader::waterImg, pos, size);
+		break;
+	default:
+		Box::draw(pos, size);
+		break;
 	}
 }
