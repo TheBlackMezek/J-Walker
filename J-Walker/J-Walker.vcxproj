@@ -171,10 +171,19 @@
     <Image Include="AvatarButton2.png" />
     <Image Include="BackButton1.png" />
     <Image Include="BackButton2.png" />
+    <Image Include="DesertTile.png" />
     <Image Include="EmptyTile.png" />
+    <Image Include="ForestTile.png" />
     <Image Include="GenButton1.png" />
     <Image Include="GenButton2.png" />
+    <Image Include="GrassTile.png" />
+    <Image Include="HillTile.png" />
+    <Image Include="LeftArrow.png" />
+    <Image Include="MarshTile.png" />
+    <Image Include="MountainTile.png" />
+    <Image Include="RightArrow.png" />
     <Image Include="SpawnerButton.png" />
+    <Image Include="WaterTile.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

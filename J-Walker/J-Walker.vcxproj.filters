@@ -160,5 +160,32 @@
     <Image Include="SpawnerButton.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="DesertTile.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ForestTile.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="GrassTile.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="HillTile.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="LeftArrow.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="MarshTile.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="MountainTile.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RightArrow.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="WaterTile.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
