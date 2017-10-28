@@ -30,6 +30,10 @@ Player player;
 World world;
 MapRegion newReg;
 int editTileType = 0;
+int editSpawner = 0;
+bool editTilesNotEntities = true;
+
+Button tileTypeBut;
 
 
 void switchToAvatarMode();
@@ -44,6 +48,7 @@ void selectSpawnThree();
 
 void previousTileType();
 void nextTileType();
+void selectTiles();
 
 
 
@@ -90,16 +95,16 @@ int main()
 	genRegBut.imgs[0] = TextureLoader::gen_button_1;
 	genRegBut.imgs[1] = TextureLoader::gen_button_2;
 
-	/*Button tileTypeBut;
+	//Button tileTypeBut;
 	tileTypeBut.transform.pos = { 450, 25 };
 	tileTypeBut.size = { 50, 50 };
 	tileTypeBut.transform.disfigure = tileTypeBut.size;
-	tileTypeBut.callback = nullptr;
+	tileTypeBut.callback = selectTiles;
 	tileTypeBut.useColors = true;
 	tileTypeBut.imgs[0] = TextureLoader::empty_tile_img;
 	tileTypeBut.imgs[1] = TextureLoader::empty_tile_img;
 	tileTypeBut.colors[0] = WHITE;
-	tileTypeBut.colors[1] = GREEN;*/
+	tileTypeBut.colors[1] = GREEN;
 
 	Button prevTileBut;
 	prevTileBut.transform.pos = { 400, 25 };
@@ -376,6 +381,7 @@ int main()
 			emptyTileBut.update();*/
 			prevTileBut.update();
 			nextTileBut.update();
+			tileTypeBut.update();
 			if (newReg.spawners[0].usable)
 			{
 				spawnerButOne.update();
@@ -398,16 +404,16 @@ int main()
 
 			if (sfw::getMouseButton(0) && regPos.x >= 0 && regPos.x < 10 && regPos.y >= 0 && regPos.y < 10)
 			{
-				if (editTileType < TileTypes::tileTypes.size() && newReg.tileCounts[editTileType] > 0)
+				if (editTilesNotEntities && newReg.tileCounts[editTileType] > 0)
 				{
 					++newReg.tileCounts[newReg.getTile((int)regPos.x, (int)regPos.y)];
 					newReg.setTile((int)regPos.x, (int)regPos.y, editTileType);
 					--newReg.tileCounts[editTileType];
 				}
-				else if(editTileType >= TileTypes::tileTypes.size())
+				else if(!editTilesNotEntities)
 				{
-					newReg.spawners[editTileType - TileTypes::tileTypes.size()].active = true;
-					newReg.spawners[editTileType - TileTypes::tileTypes.size()].transform.pos = vec2{ regPos.x * 40 + 20, regPos.y * 40 + 20 };
+					newReg.spawners[editSpawner].active = true;
+					newReg.spawners[editSpawner].transform.pos = vec2{ regPos.x * 40 + 20, regPos.y * 40 + 20 };
 				}
 			}
 
@@ -419,7 +425,8 @@ int main()
 			/*grassTileBut.draw();
 			waterTileBut.draw();
 			emptyTileBut.draw();*/
-			sfw::drawTexture(TileTypes::getImgForType(editTileType), 475, 50, 50, 50);
+			//sfw::drawTexture(TileTypes::getImgForType(editTileType), 475, 50, 50, 50);
+			tileTypeBut.draw();
 			prevTileBut.draw();
 			nextTileBut.draw();
 			if (newReg.spawners[0].usable)
@@ -557,36 +564,50 @@ void selectEmpty()
 
 void selectSpawnOne()
 {
-	editTileType = TileTypes::tileTypes.size();
+	editSpawner = 0;
+	editTilesNotEntities = false;
 	newReg.spawners[0].active = false;
 }
 
 void selectSpawnTwo()
 {
-	editTileType = TileTypes::tileTypes.size() + 1;
+	editSpawner = 1;
+	editTilesNotEntities = false;
 	newReg.spawners[1].active = false;
 }
 
 void selectSpawnThree()
 {
-	editTileType = TileTypes::tileTypes.size() + 2;
+	editSpawner = 2;
+	editTilesNotEntities = false;
 	newReg.spawners[2].active = false;
 }
 
 void previousTileType()
 {
 	--editTileType;
+	editTilesNotEntities = true;
 	if (editTileType < 0)
 	{
 		editTileType = TileTypes::tileTypes.size() - 1;
 	}
+	tileTypeBut.imgs[0] = TileTypes::tileTypes[editTileType].texId;
+	tileTypeBut.imgs[1] = TileTypes::tileTypes[editTileType].texId;
 }
 
 void nextTileType()
 {
 	++editTileType;
+	editTilesNotEntities = true;
 	if (editTileType == TileTypes::tileTypes.size())
 	{
 		editTileType = 0;
 	}
+	tileTypeBut.imgs[0] = TileTypes::tileTypes[editTileType].texId;
+	tileTypeBut.imgs[1] = TileTypes::tileTypes[editTileType].texId;
+}
+
+void selectTiles()
+{
+	editTilesNotEntities = true;
 }
