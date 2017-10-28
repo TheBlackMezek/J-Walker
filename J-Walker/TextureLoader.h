@@ -11,6 +11,8 @@ public:
 
 
 
+	static int stringBitmap;
+
 	static int avatar_button_1;
 	static int avatar_button_2;
 
