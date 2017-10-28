@@ -5,6 +5,8 @@
 
 #include "MathLib\Mat3.h"
 
+#include "MouseHandler.h"
+
 
 
 Button::Button()
@@ -36,7 +38,8 @@ void Button::update()
 		mouse.y >= transform.pos.y && mouse.y < transform.pos.y + size.y)
 	{
 		mouseOver = true;
-		if (sfw::getMouseButton(0))
+		//if (sfw::getMouseButton(0))
+		if(MouseHandler::leftDownStart)
 		{
 			callback();
 		}

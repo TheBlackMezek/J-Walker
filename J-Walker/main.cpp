@@ -11,6 +11,8 @@
 #include "World.h"
 #include "Button.h"
 #include "TextureLoader.h"
+#include "TileTypes.h"
+#include "MouseHandler.h"
 
 
 
@@ -40,6 +42,9 @@ void selectSpawnOne();
 void selectSpawnTwo();
 void selectSpawnThree();
 
+void previousTileType();
+void nextTileType();
+
 
 
 
@@ -54,8 +59,10 @@ int main()
 	sfw::setBackgroundColor(BLACK);
 
 	TextureLoader::init();
+	TileTypes::init();
+	MouseHandler::init();
 
-	newReg.tileCounts[0] = 0;
+	newReg.tileCounts[0] = -1;
 
 
 
@@ -82,6 +89,39 @@ int main()
 	genRegBut.callback = &genRegion;
 	genRegBut.imgs[0] = TextureLoader::gen_button_1;
 	genRegBut.imgs[1] = TextureLoader::gen_button_2;
+
+	/*Button tileTypeBut;
+	tileTypeBut.transform.pos = { 450, 25 };
+	tileTypeBut.size = { 50, 50 };
+	tileTypeBut.transform.disfigure = tileTypeBut.size;
+	tileTypeBut.callback = nullptr;
+	tileTypeBut.useColors = true;
+	tileTypeBut.imgs[0] = TextureLoader::empty_tile_img;
+	tileTypeBut.imgs[1] = TextureLoader::empty_tile_img;
+	tileTypeBut.colors[0] = WHITE;
+	tileTypeBut.colors[1] = GREEN;*/
+
+	Button prevTileBut;
+	prevTileBut.transform.pos = { 400, 25 };
+	prevTileBut.size = { 50, 50 };
+	prevTileBut.transform.disfigure = prevTileBut.size;
+	prevTileBut.callback = &previousTileType;
+	prevTileBut.useColors = true;
+	prevTileBut.imgs[0] = TextureLoader::leftArrowImg;
+	prevTileBut.imgs[1] = TextureLoader::leftArrowImg;
+	prevTileBut.colors[0] = WHITE;
+	prevTileBut.colors[1] = GREEN;
+
+	Button nextTileBut;
+	nextTileBut.transform.pos = { 500, 25 };
+	nextTileBut.size = { 50, 50 };
+	nextTileBut.transform.disfigure = nextTileBut.size;
+	nextTileBut.callback = &nextTileType;
+	nextTileBut.useColors = true;
+	nextTileBut.imgs[0] = TextureLoader::rightArrowImg;
+	nextTileBut.imgs[1] = TextureLoader::rightArrowImg;
+	nextTileBut.colors[0] = WHITE;
+	nextTileBut.colors[1] = GREEN;
 
 	Button grassTileBut;
 	grassTileBut.transform.pos = { 400, 25 };
@@ -151,6 +191,7 @@ int main()
 	while (sfw::stepContext())
 	{
 		sfw::drawCircle(sfw::getMouseX(), sfw::getMouseY(), 3);
+		MouseHandler::update();
 
 		if (state == WORLD_STATE)
 		{
@@ -160,7 +201,7 @@ int main()
 
 
 
-			if (newReg.tileCounts[0] != 0)
+			if (newReg.tileCounts[0] != -1)
 			{
 				switch (newReg.tileCounts[1])
 				{
@@ -251,6 +292,9 @@ int main()
 					if (valid && found)
 					{
 						state = EDIT_STATE;
+						editTileType = 0;
+						emptyTileBut.imgs[0] = TextureLoader::empty_tile_img;
+						emptyTileBut.imgs[1] = TextureLoader::empty_tile_img;
 						switch (newReg.tileCounts[1])
 						{
 						case 10:
@@ -323,13 +367,15 @@ int main()
 		}
 		else if (state == EDIT_STATE)
 		{
-			if (newReg.tileCounts[1] == 0 && newReg.tileCounts[2] == 0)
+			if (newReg.tileCounts[0] == 100)
 			{
 				worldModeBut.update();
 			}
-			grassTileBut.update();
+			/*grassTileBut.update();
 			waterTileBut.update();
-			emptyTileBut.update();
+			emptyTileBut.update();*/
+			prevTileBut.update();
+			nextTileBut.update();
 			if (newReg.spawners[0].usable)
 			{
 				spawnerButOne.update();
@@ -352,27 +398,30 @@ int main()
 
 			if (sfw::getMouseButton(0) && regPos.x >= 0 && regPos.x < 10 && regPos.y >= 0 && regPos.y < 10)
 			{
-				if (editTileType < 3 && newReg.tileCounts[editTileType] > 0)
+				if (editTileType < TileTypes::tileTypes.size() && newReg.tileCounts[editTileType] > 0)
 				{
 					++newReg.tileCounts[newReg.getTile((int)regPos.x, (int)regPos.y)];
 					newReg.setTile((int)regPos.x, (int)regPos.y, editTileType);
 					--newReg.tileCounts[editTileType];
 				}
-				else if(editTileType >= 3)
+				else if(editTileType >= TileTypes::tileTypes.size())
 				{
-					newReg.spawners[editTileType - 3].active = true;
-					newReg.spawners[editTileType - 3].transform.pos = vec2{ regPos.x * 40 + 20, regPos.y * 40 + 20 };
+					newReg.spawners[editTileType - TileTypes::tileTypes.size()].active = true;
+					newReg.spawners[editTileType - TileTypes::tileTypes.size()].transform.pos = vec2{ regPos.x * 40 + 20, regPos.y * 40 + 20 };
 				}
 			}
 
 
-			if (newReg.tileCounts[1] == 0 && newReg.tileCounts[2] == 0)
+			if (newReg.tileCounts[0] == 100)
 			{
 				worldModeBut.draw();
 			}
-			grassTileBut.draw();
+			/*grassTileBut.draw();
 			waterTileBut.draw();
-			emptyTileBut.draw();
+			emptyTileBut.draw();*/
+			sfw::drawTexture(TileTypes::getImgForType(editTileType), 475, 50, 50, 50);
+			prevTileBut.draw();
+			nextTileBut.draw();
 			if (newReg.spawners[0].usable)
 			{
 				spawnerButOne.draw();
@@ -455,14 +504,14 @@ void switchToWorldMode()
 {
 	state = WORLD_STATE;
 	player.transform.pos = { 20,20 };
-	newReg.tileCounts[0] = 0;
+	newReg.tileCounts[0] = -1;
 	editTileType = 0;
 	world.regs.push_back(newReg);
 }
 
 void genRegion()
 {
-	if (newReg.tileCounts[0] == 0)
+	if (newReg.tileCounts[0] == -1)
 	{
 		for (int i = 0; i < 100; ++i)
 		{
@@ -479,7 +528,7 @@ void genRegion()
 
 		int amtWater = 100 - amtGrass;
 
-		newReg.tileCounts[0] = 200;
+		newReg.tileCounts[0] = 0;
 		newReg.tileCounts[1] = amtGrass;
 		newReg.tileCounts[2] = amtWater;
 
@@ -508,18 +557,36 @@ void selectEmpty()
 
 void selectSpawnOne()
 {
-	editTileType = 3;
+	editTileType = TileTypes::tileTypes.size();
 	newReg.spawners[0].active = false;
 }
 
 void selectSpawnTwo()
 {
-	editTileType = 4;
+	editTileType = TileTypes::tileTypes.size() + 1;
 	newReg.spawners[1].active = false;
 }
 
 void selectSpawnThree()
 {
-	editTileType = 5;
+	editTileType = TileTypes::tileTypes.size() + 2;
 	newReg.spawners[2].active = false;
+}
+
+void previousTileType()
+{
+	--editTileType;
+	if (editTileType < 0)
+	{
+		editTileType = TileTypes::tileTypes.size() - 1;
+	}
+}
+
+void nextTileType()
+{
+	++editTileType;
+	if (editTileType == TileTypes::tileTypes.size())
+	{
+		editTileType = 0;
+	}
 }

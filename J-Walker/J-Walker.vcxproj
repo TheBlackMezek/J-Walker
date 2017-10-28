@@ -132,9 +132,11 @@
     <ClCompile Include="Line.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MapRegion.cpp" />
+    <ClCompile Include="MouseHandler.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="TextureLoader.cpp" />
     <ClCompile Include="TileRender.cpp" />
+    <ClCompile Include="TileTypes.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -143,9 +145,11 @@
     <ClInclude Include="Circle.h" />
     <ClInclude Include="Line.h" />
     <ClInclude Include="MapRegion.h" />
+    <ClInclude Include="MouseHandler.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="TextureLoader.h" />
     <ClInclude Include="TileRender.h" />
+    <ClInclude Include="TileTypes.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>

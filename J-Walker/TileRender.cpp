@@ -7,6 +7,7 @@
 #include "Line.h"
 #include "Circle.h"
 #include "TextureLoader.h"
+#include "TileTypes.h"
 
 
 TileRender::TileRender()
@@ -27,17 +28,14 @@ void TileRender::draw(vec2 playerPos, vec2 pos, vec2 size, int type, bool worldM
 	vec2 topLeft = { pos.x, pos.y + size.y };
 	vec2 topRight = { pos.x + size.x, pos.y + size.y };
 
-	switch (type)
+
+	if (type == 0)
 	{
-	case 1:
-		Box::drawTexture(TextureLoader::grassImg, playerPos, pos, size);
-		break;
-	case 2:
-		Box::drawTexture(TextureLoader::waterImg, playerPos, pos, size);
-		break;
-	default:
 		Box::draw(playerPos, pos, size);
-		break;
+	}
+	else
+	{
+		Box::drawTexture(TileTypes::tileTypes[type].texId, playerPos, pos, size);
 	}
 }
 
@@ -48,16 +46,12 @@ void TileRender::draw(vec2 pos, vec2 size, int type, bool worldMode)
 	vec2 topLeft = { pos.x, pos.y + size.y };
 	vec2 topRight = { pos.x + size.x, pos.y + size.y };
 
-	switch (type)
+	if (type == 0)
 	{
-	case 1:
-		Box::drawTexture(TextureLoader::grassImg, pos, size);
-		break;
-	case 2:
-		Box::drawTexture(TextureLoader::waterImg, pos, size);
-		break;
-	default:
 		Box::draw(pos, size);
-		break;
+	}
+	else
+	{
+		Box::drawTexture(TileTypes::tileTypes[type].texId, pos, size);
 	}
 }
