@@ -427,7 +427,7 @@ int main()
 			waterTileBut.draw();
 			emptyTileBut.draw();*/
 			//sfw::drawTexture(TileTypes::getImgForType(editTileType), 475, 50, 50, 50);
-			//sfw::drawString(TextureLoader::stringBitmap, std::to_string(newReg.tileCounts[editTileType]).c_str(), 450, 50);
+			sfw::drawString(TextureLoader::stringBitmap, std::to_string(newReg.tileCounts[editTileType]).c_str(), 450, 100, 20, 20);
 			tileTypeBut.draw();
 			prevTileBut.draw();
 			nextTileBut.draw();
@@ -484,8 +484,9 @@ int main()
 				player.transform.pos = { 20,20 };
 			}
 		}
-	}
 
+
+	}
 
 	return 0;
 }

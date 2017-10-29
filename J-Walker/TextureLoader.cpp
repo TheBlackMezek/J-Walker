@@ -60,7 +60,7 @@ TextureLoader::~TextureLoader()
 
 void TextureLoader::init()
 {
-	stringBitmap = sfw::loadTextureMap("data/textures/fontmap.png", 16, 16);
+	stringBitmap = sfw::loadTextureMap("16x16fontmap.gif", 16, 16);
 
 	avatar_button_1 = sfw::loadTextureMap("AvatarButton1.png");
 	avatar_button_2 = sfw::loadTextureMap("AvatarButton2.png");

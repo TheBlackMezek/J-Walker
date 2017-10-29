@@ -155,6 +155,7 @@
   <ItemGroup>
     <Image Include="10Grass.png" />
     <Image Include="10Water.png" />
+    <Image Include="16x16fontmap.gif" />
     <Image Include="20Grass.png" />
     <Image Include="20Water.png" />
     <Image Include="30Grass.png" />

@@ -199,5 +199,8 @@
     <Image Include="WaterTile.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="16x16fontmap.gif">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
