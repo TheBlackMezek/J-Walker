@@ -300,6 +300,7 @@ int main()
 					{
 						state = EDIT_STATE;
 						editTileType = 0;
+						editTilesNotEntities = true;
 						tileTypeBut.imgs[0] = TextureLoader::empty_tile_img;
 						tileTypeBut.imgs[1] = TextureLoader::empty_tile_img;
 						switch (newReg.tileCounts[1])
