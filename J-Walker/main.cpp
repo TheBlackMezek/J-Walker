@@ -33,6 +33,7 @@ MapRegion newReg;
 int editTileType = 0;
 int editSpawner = 0;
 bool editTilesNotEntities = true;
+std::string newRegionDesc = "Not set";
 
 Button tileTypeBut;
 
@@ -364,6 +365,7 @@ int main()
 				int drawColor = (valid && found) ? GREEN : WHITE;
 
 				Box::draw(player.transform.pos, selectPos, { 40, 40 }, drawColor);
+				sfw::drawString(TextureLoader::stringBitmap, newRegionDesc.c_str(), 200, 50, 20, 20);
 
 			}
 
@@ -556,6 +558,7 @@ void genRegion()
 			newReg.tileCounts[5] = 0;
 			newReg.tileCounts[6] = rand() % 40 + 10;
 			newReg.tileCounts[7] = rand() % 5;
+			newRegionDesc = "Grassland region";
 			break;
 		case 1:
 			newReg.tileCounts[1] = rand() % 20 + 5;
@@ -565,6 +568,7 @@ void genRegion()
 			newReg.tileCounts[5] = rand() % 10;
 			newReg.tileCounts[6] = rand() % 10;
 			newReg.tileCounts[7] = rand() % 5;
+			newRegionDesc = "Ocean region";
 			break;
 		default:
 			newReg.tileCounts[1] = 100;
@@ -574,6 +578,7 @@ void genRegion()
 			newReg.tileCounts[5] = 0;
 			newReg.tileCounts[6] = 0;
 			newReg.tileCounts[4] = 0;
+			newRegionDesc = "Default region";
 			break;
 		}
 
