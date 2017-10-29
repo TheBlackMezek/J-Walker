@@ -299,10 +299,10 @@ int main()
 					if (valid && found)
 					{
 						state = EDIT_STATE;
-						editTileType = 0;
+						//editTileType = 0;
 						editTilesNotEntities = true;
-						tileTypeBut.imgs[0] = TextureLoader::empty_tile_img;
-						tileTypeBut.imgs[1] = TextureLoader::empty_tile_img;
+						//tileTypeBut.imgs[0] = TextureLoader::empty_tile_img;
+						//tileTypeBut.imgs[1] = TextureLoader::empty_tile_img;
 						switch (newReg.tileCounts[1])
 						{
 						case 10:
@@ -526,10 +526,6 @@ void genRegion()
 {
 	if (newReg.tileCounts[0] == -1)
 	{
-		for (int i = 0; i < 100; ++i)
-		{
-			newReg.setTile(i, 0);
-		}
 		for (int i = 0; i < 3; ++i)
 		{
 			newReg.spawners[i].active = false;
@@ -537,6 +533,7 @@ void genRegion()
 		}
 
 		int regionType = rand() % 6;
+		int regFillType = 0;
 		/*
 		region types
 		0 grassland
@@ -547,48 +544,52 @@ void genRegion()
 		5 marsh
 		*/
 
-		newReg.tileCounts[0] = 0;
+		newReg.tileCounts[0] = 100;
 
 		switch (regionType)
 		{
 		case 0:
-			newReg.tileCounts[1] = 100;
+			newReg.tileCounts[1] = 0;
 			newReg.tileCounts[2] = rand() % 10 + 12;
 			newReg.tileCounts[3] = rand() % 20;
 			newReg.tileCounts[4] = rand() % 5;
 			newReg.tileCounts[5] = 0;
 			newReg.tileCounts[6] = rand() % 40 + 10;
 			newReg.tileCounts[7] = rand() % 5;
+			regFillType = 1;
 			newRegionDesc = "Grassland region";
 			break;
 		case 1:
 			newReg.tileCounts[1] = rand() % 20 + 5;
-			newReg.tileCounts[2] = 100;
+			newReg.tileCounts[2] = 0;
 			newReg.tileCounts[3] = rand() % 5;
 			newReg.tileCounts[4] = rand() % 5;
 			newReg.tileCounts[5] = rand() % 10;
 			newReg.tileCounts[6] = rand() % 10;
 			newReg.tileCounts[7] = rand() % 5;
+			regFillType = 2;
 			newRegionDesc = "Ocean region";
 			break;
 		case 2:
 			newReg.tileCounts[1] = rand() % 20 + 10;
 			newReg.tileCounts[2] = rand() % 10 + 12;
-			newReg.tileCounts[3] = 100;
+			newReg.tileCounts[3] = 0;
 			newReg.tileCounts[4] = rand() % 10 + 5;
 			newReg.tileCounts[5] = 0;
 			newReg.tileCounts[6] = rand() % 10;
 			newReg.tileCounts[7] = rand() % 20;
+			regFillType = 3;
 			newRegionDesc = "Forest region";
 			break;
 		case 3:
 			newReg.tileCounts[1] = rand() % 10;
 			newReg.tileCounts[2] = rand() % 20 + 10;
 			newReg.tileCounts[3] = rand() % 15;
-			newReg.tileCounts[4] = 100;
+			newReg.tileCounts[4] = 0;
 			newReg.tileCounts[5] = rand() % 10;
 			newReg.tileCounts[6] = rand() % 20 + 10;
 			newReg.tileCounts[7] = rand() % 10;
+			regFillType = 4;
 			newRegionDesc = "Mountain region";
 			break;
 		case 4:
@@ -596,9 +597,10 @@ void genRegion()
 			newReg.tileCounts[2] = rand() % 10 + 12;
 			newReg.tileCounts[3] = 0;
 			newReg.tileCounts[4] = rand() % 5;
-			newReg.tileCounts[5] = 100;
+			newReg.tileCounts[5] = 0;
 			newReg.tileCounts[6] = rand() % 10;
 			newReg.tileCounts[7] = rand() % 10;
+			regFillType = 5;
 			newRegionDesc = "Desert region";
 			break;
 		case 5:
@@ -608,7 +610,8 @@ void genRegion()
 			newReg.tileCounts[4] = 0;
 			newReg.tileCounts[5] = 0;
 			newReg.tileCounts[6] = rand() % 10;
-			newReg.tileCounts[7] = 100;
+			newReg.tileCounts[7] = 0;
+			regFillType = 7;
 			newRegionDesc = "Marsh region";
 			break;
 		default:
@@ -622,6 +625,14 @@ void genRegion()
 			newRegionDesc = "Default region";
 			break;
 		}
+
+		for (int i = 0; i < 100; ++i)
+		{
+			newReg.setTile(i, regFillType);
+		}
+		editTileType = regFillType;
+		tileTypeBut.imgs[0] = TileTypes::tileTypes[editTileType].texId;
+		tileTypeBut.imgs[1] = TileTypes::tileTypes[editTileType].texId;
 
 		int spawners = rand() % 4;
 		for (int i = 0; i < spawners; ++i)
