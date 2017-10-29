@@ -535,15 +535,15 @@ void genRegion()
 			newReg.spawners[i].usable = false;
 		}
 
-		int regionType = rand() % 2;
+		int regionType = rand() % 6;
 		/*
 		region types
 		0 grassland
 		1 ocean
 		2 forest
-		3 desert
-		4 marsh
-		5 mountain
+		3 mountain
+		4 desert
+		5 marsh
 		*/
 
 		newReg.tileCounts[0] = 0;
@@ -569,6 +569,46 @@ void genRegion()
 			newReg.tileCounts[6] = rand() % 10;
 			newReg.tileCounts[7] = rand() % 5;
 			newRegionDesc = "Ocean region";
+			break;
+		case 2:
+			newReg.tileCounts[1] = rand() % 20 + 10;
+			newReg.tileCounts[2] = rand() % 10 + 12;
+			newReg.tileCounts[3] = 100;
+			newReg.tileCounts[4] = rand() % 10 + 5;
+			newReg.tileCounts[5] = 0;
+			newReg.tileCounts[6] = rand() % 10;
+			newReg.tileCounts[7] = rand() % 20;
+			newRegionDesc = "Forest region";
+			break;
+		case 3:
+			newReg.tileCounts[1] = rand() % 10;
+			newReg.tileCounts[2] = rand() % 20 + 10;
+			newReg.tileCounts[3] = rand() % 15;
+			newReg.tileCounts[4] = 100;
+			newReg.tileCounts[5] = rand() % 10;
+			newReg.tileCounts[6] = rand() % 20 + 10;
+			newReg.tileCounts[7] = rand() % 10;
+			newRegionDesc = "Mountain region";
+			break;
+		case 4:
+			newReg.tileCounts[1] = rand() % 5;
+			newReg.tileCounts[2] = rand() % 10 + 12;
+			newReg.tileCounts[3] = 0;
+			newReg.tileCounts[4] = rand() % 5;
+			newReg.tileCounts[5] = 100;
+			newReg.tileCounts[6] = rand() % 10;
+			newReg.tileCounts[7] = rand() % 10;
+			newRegionDesc = "Desert region";
+			break;
+		case 5:
+			newReg.tileCounts[1] = rand() % 20;
+			newReg.tileCounts[2] = rand() % 20 + 20;
+			newReg.tileCounts[3] = rand() % 20;
+			newReg.tileCounts[4] = 0;
+			newReg.tileCounts[5] = 0;
+			newReg.tileCounts[6] = rand() % 10;
+			newReg.tileCounts[7] = 100;
+			newRegionDesc = "Marsh region";
 			break;
 		default:
 			newReg.tileCounts[1] = 100;
