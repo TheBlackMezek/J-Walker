@@ -130,35 +130,6 @@ int main()
 	nextTileBut.colors[0] = WHITE;
 	nextTileBut.colors[1] = GREEN;
 
-	Button grassTileBut;
-	grassTileBut.transform.pos = { 400, 25 };
-	grassTileBut.size = { 100, 50 };
-	grassTileBut.transform.disfigure = grassTileBut.size;
-	grassTileBut.callback = &selectGrass;
-	grassTileBut.useColors = true;
-	grassTileBut.colors[0] = WHITE;
-	grassTileBut.colors[1] = GREEN;
-
-	Button waterTileBut;
-	waterTileBut.transform.pos = { 500, 25 };
-	waterTileBut.size = { 100, 50 };
-	waterTileBut.transform.disfigure = waterTileBut.size;
-	waterTileBut.callback = &selectWater;
-	waterTileBut.useColors = true;
-	waterTileBut.colors[0] = WHITE;
-	waterTileBut.colors[1] = BLUE;
-
-	Button emptyTileBut;
-	emptyTileBut.transform.pos = { 600, 25 };
-	emptyTileBut.size = { 50, 50 };
-	emptyTileBut.transform.disfigure = emptyTileBut.size;
-	emptyTileBut.callback = &selectEmpty;
-	emptyTileBut.imgs[0] = TextureLoader::empty_tile_img;
-	emptyTileBut.imgs[1] = TextureLoader::empty_tile_img;
-	emptyTileBut.useColors = true;
-	emptyTileBut.colors[0] = WHITE;
-	emptyTileBut.colors[1] = GREEN;
-
 	Button spawnerButOne;
 	spawnerButOne.transform.pos = { 650, 25 };
 	spawnerButOne.size = { 50, 50 };
@@ -210,45 +181,6 @@ int main()
 
 			if (newReg.tileCounts[0] != -1)
 			{
-				switch (newReg.tileCounts[1])
-				{
-				case 10:
-					sfw::drawTexture(TextureLoader::grass10img, 400, 25, 100, 50);
-					sfw::drawTexture(TextureLoader::water90img, 500, 25, 100, 50);
-					break;
-				case 20:
-					sfw::drawTexture(TextureLoader::grass20img, 400, 25, 100, 50);
-					sfw::drawTexture(TextureLoader::water80img, 500, 25, 100, 50);
-					break;
-				case 30:
-					sfw::drawTexture(TextureLoader::grass30img, 400, 25, 100, 50);
-					sfw::drawTexture(TextureLoader::water70img, 500, 25, 100, 50);
-					break;
-				case 40:
-					sfw::drawTexture(TextureLoader::grass40img, 400, 25, 100, 50);
-					sfw::drawTexture(TextureLoader::water60img, 500, 25, 100, 50);
-					break;
-				case 50:
-					sfw::drawTexture(TextureLoader::grass50img, 400, 25, 100, 50);
-					sfw::drawTexture(TextureLoader::water50img, 500, 25, 100, 50);
-					break;
-				case 60:
-					sfw::drawTexture(TextureLoader::grass60img, 400, 25, 100, 50);
-					sfw::drawTexture(TextureLoader::water40img, 500, 25, 100, 50);
-					break;
-				case 70:
-					sfw::drawTexture(TextureLoader::grass70img, 400, 25, 100, 50);
-					sfw::drawTexture(TextureLoader::water30img, 500, 25, 100, 50);
-					break;
-				case 80:
-					sfw::drawTexture(TextureLoader::grass80img, 400, 25, 100, 50);
-					sfw::drawTexture(TextureLoader::water20img, 500, 25, 100, 50);
-					break;
-				case 90:
-					sfw::drawTexture(TextureLoader::grass90img, 400, 25, 100, 50);
-					sfw::drawTexture(TextureLoader::water10img, 500, 25, 100, 50);
-					break;
-				}
 
 				vec2 selectPos = { sfw::getMouseX() - 400, sfw::getMouseY() - 300 };
 				selectPos = selectPos + player.transform.pos;
@@ -303,63 +235,6 @@ int main()
 						editTilesNotEntities = true;
 						//tileTypeBut.imgs[0] = TextureLoader::empty_tile_img;
 						//tileTypeBut.imgs[1] = TextureLoader::empty_tile_img;
-						switch (newReg.tileCounts[1])
-						{
-						case 10:
-							grassTileBut.imgs[0] = TextureLoader::grass10img;
-							grassTileBut.imgs[1] = TextureLoader::grass10img;
-							waterTileBut.imgs[0] = TextureLoader::water90img;
-							waterTileBut.imgs[1] = TextureLoader::water90img;
-							break;
-						case 20:
-							grassTileBut.imgs[0] = TextureLoader::grass20img;
-							grassTileBut.imgs[1] = TextureLoader::grass20img;
-							waterTileBut.imgs[0] = TextureLoader::water80img;
-							waterTileBut.imgs[1] = TextureLoader::water80img;
-							break;
-						case 30:
-							grassTileBut.imgs[0] = TextureLoader::grass30img;
-							grassTileBut.imgs[1] = TextureLoader::grass30img;
-							waterTileBut.imgs[0] = TextureLoader::water70img;
-							waterTileBut.imgs[1] = TextureLoader::water70img;
-							break;
-						case 40:
-							grassTileBut.imgs[0] = TextureLoader::grass40img;
-							grassTileBut.imgs[1] = TextureLoader::grass40img;
-							waterTileBut.imgs[0] = TextureLoader::water60img;
-							waterTileBut.imgs[1] = TextureLoader::water60img;
-							break;
-						case 50:
-							grassTileBut.imgs[0] = TextureLoader::grass50img;
-							grassTileBut.imgs[1] = TextureLoader::grass50img;
-							waterTileBut.imgs[0] = TextureLoader::water50img;
-							waterTileBut.imgs[1] = TextureLoader::water50img;
-							break;
-						case 60:
-							grassTileBut.imgs[0] = TextureLoader::grass60img;
-							grassTileBut.imgs[1] = TextureLoader::grass60img;
-							waterTileBut.imgs[0] = TextureLoader::water40img;
-							waterTileBut.imgs[1] = TextureLoader::water40img;
-							break;
-						case 70:
-							grassTileBut.imgs[0] = TextureLoader::grass70img;
-							grassTileBut.imgs[1] = TextureLoader::grass70img;
-							waterTileBut.imgs[0] = TextureLoader::water30img;
-							waterTileBut.imgs[1] = TextureLoader::water30img;
-							break;
-						case 80:
-							grassTileBut.imgs[0] = TextureLoader::grass80img;
-							grassTileBut.imgs[1] = TextureLoader::grass80img;
-							waterTileBut.imgs[0] = TextureLoader::water20img;
-							waterTileBut.imgs[1] = TextureLoader::water20img;
-							break;
-						case 90:
-							grassTileBut.imgs[0] = TextureLoader::grass90img;
-							grassTileBut.imgs[1] = TextureLoader::grass90img;
-							waterTileBut.imgs[0] = TextureLoader::water10img;
-							waterTileBut.imgs[1] = TextureLoader::water10img;
-							break;
-						}
 					}
 				}
 
