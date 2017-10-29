@@ -31,6 +31,7 @@ public:
 	void setTile(int x, int y, int type);
 	void setTile(int idx, int type);
 	int getTile(int x, int y);
+	int getTile(int idx);
 
 private:
 	size_t tiles[100];

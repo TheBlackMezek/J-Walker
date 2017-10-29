@@ -2,6 +2,7 @@
 #include <iostream>
 #include <time.h>
 #include <string>
+#include <fstream>
 
 #include "sfwdraw.h"
 #include "MathLib\Transform.h"
@@ -51,6 +52,9 @@ void selectSpawnThree();
 void previousTileType();
 void nextTileType();
 void selectTiles();
+
+void saveWorld();
+void loadWorld();
 
 
 
@@ -163,6 +167,28 @@ int main()
 	spawnerButThree.colors[0] = WHITE;
 	spawnerButThree.colors[1] = RED;
 
+	Button saveButton;
+	saveButton.transform.pos = { 50, 200 };
+	saveButton.size = { 50, 50 };
+	saveButton.transform.disfigure = saveButton.size;
+	saveButton.callback = &saveWorld;
+	saveButton.imgs[0] = TextureLoader::leftArrowImg;
+	saveButton.imgs[1] = TextureLoader::leftArrowImg;
+	saveButton.useColors = true;
+	saveButton.colors[0] = WHITE;
+	saveButton.colors[1] = BLUE;
+
+	Button loadButton;
+	loadButton.transform.pos = { 50, 250 };
+	loadButton.size = { 50, 50 };
+	loadButton.transform.disfigure = loadButton.size;
+	loadButton.callback = &loadWorld;
+	loadButton.imgs[0] = TextureLoader::rightArrowImg;
+	loadButton.imgs[1] = TextureLoader::rightArrowImg;
+	loadButton.useColors = true;
+	loadButton.colors[0] = WHITE;
+	loadButton.colors[1] = GREEN;
+
 	
 
 
@@ -176,6 +202,8 @@ int main()
 			player.update();
 			avatarModeBut.update();
 			genRegBut.update();
+			saveButton.update();
+			loadButton.update();
 
 
 
@@ -247,6 +275,8 @@ int main()
 
 			avatarModeBut.draw();
 			genRegBut.draw();
+			saveButton.draw();
+			loadButton.draw();
 			world.drawWorld(player.transform.pos);
 		}
 		else if (state == EDIT_STATE)
@@ -580,4 +610,96 @@ void nextTileType()
 void selectTiles()
 {
 	editTilesNotEntities = true;
+}
+
+void saveWorld()
+{
+	std::ofstream file;
+	file.open("world.txt");
+
+	for (int i = 0; i < world.regs.size(); ++i)
+	{
+		std::string line;
+		line.append(std::to_string(world.regs[i].transform.pos.x));
+		line.append(",");
+		line.append(std::to_string(world.regs[i].transform.pos.y));
+		line.append(",");
+		for (int q = 0; q < 100; ++q)
+		{
+			line.append(std::to_string(world.regs[i].getTile(q)));
+			line.append(",");
+		}
+		for (int q = 0; q < 3; ++q)
+		{
+			if (world.regs[i].spawners[q].active)
+			{
+				line.append(std::to_string(world.regs[i].spawners[q].transform.pos.x));
+				line.append(",");
+				line.append(std::to_string(world.regs[i].spawners[q].transform.pos.y));
+				line.append(",");
+				line.append(std::to_string(world.regs[i].spawners[q].cooldown));
+				line.append(",");
+			}
+		}
+		if (i < world.regs.size() - 1)
+		{
+			line.append("\n");
+		}
+		file << line;
+	}
+
+	file.close();
+}
+
+void loadWorld()
+{
+	world.regs.clear();
+
+	std::ifstream file;
+	file.open("world.txt");
+
+	std::string line;
+	while (std::getline(file, line))
+	{
+		size_t prevIt = -1;
+		size_t it = line.find(',', 0);
+
+		MapRegion reg;
+		reg.transform.pos.x = std::stoi(line.substr(0, it));
+
+		prevIt = it;
+		it = line.find(',', it+1);
+		reg.transform.pos.y = std::stoi(line.substr(prevIt+1, it - prevIt - 1));
+
+		for (int i = 0; i < 100; ++i)
+		{
+			prevIt = it;
+			it = line.find(',', it + 1);
+
+			reg.setTile(i, std::stoi(line.substr(prevIt + 1, it - prevIt - 1)));
+		}
+
+		int spawnIdx = 0;
+		while (line.find(',', it + 1) != line.npos)
+		{
+			prevIt = it;
+			it = line.find(',', it + 1);
+			reg.spawners[spawnIdx].active = true;
+			reg.spawners[spawnIdx].transform.pos.x = std::stoi(line.substr(prevIt + 1, it - prevIt - 1));
+
+			prevIt = it;
+			it = line.find(',', it + 1);
+			reg.spawners[spawnIdx].transform.pos.y = std::stoi(line.substr(prevIt + 1, it - prevIt - 1));
+
+			prevIt = it;
+			it = line.find(',', it + 1);
+			reg.spawners[spawnIdx].cooldown = std::stoi(line.substr(prevIt + 1, it - prevIt - 1));
+
+			++spawnIdx;
+		}
+
+		world.regs.push_back(reg);
+	}
+
+	file.close();
 }

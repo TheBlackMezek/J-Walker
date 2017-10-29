@@ -190,6 +190,9 @@
     <Image Include="SpawnerButton.png" />
     <Image Include="WaterTile.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="world.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

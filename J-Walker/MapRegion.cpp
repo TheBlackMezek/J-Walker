@@ -18,6 +18,11 @@ MapRegion::MapRegion()
 		tiles[i] = 1;
 	}
 
+	for (int i = 0; i < 8; ++i)
+	{
+		tileCounts[i] = 0;
+	}
+
 	for (int i = 0; i < 3; ++i)
 	{
 		spawners[i].usable = false;
@@ -96,6 +101,11 @@ void MapRegion::setTile(int idx, int type)
 int MapRegion::getTile(int x, int y)
 {
 	return tiles[x + y * 10];
+}
+
+int MapRegion::getTile(int idx)
+{
+	return tiles[idx];
 }
 
 //void MapRegion::draw()
