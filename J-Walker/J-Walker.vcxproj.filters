@@ -48,14 +48,14 @@
     <ClCompile Include="Button.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TextureLoader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="TileTypes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MouseHandler.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureLoader.cpp">
+      <Filter>Source Files\Drawing</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -83,14 +83,14 @@
     <ClInclude Include="Button.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TextureLoader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="TileTypes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MouseHandler.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureLoader.h">
+      <Filter>Header Files\Drawing</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
