@@ -533,14 +533,49 @@ void genRegion()
 			newReg.spawners[i].usable = false;
 		}
 
-		int amtGrass = rand() % 9 + 1;
-		amtGrass *= 10;
-
-		int amtWater = 100 - amtGrass;
+		int regionType = rand() % 2;
+		/*
+		region types
+		0 grassland
+		1 ocean
+		2 forest
+		3 desert
+		4 marsh
+		5 mountain
+		*/
 
 		newReg.tileCounts[0] = 0;
-		newReg.tileCounts[1] = amtGrass;
-		newReg.tileCounts[2] = amtWater;
+
+		switch (regionType)
+		{
+		case 0:
+			newReg.tileCounts[1] = 100;
+			newReg.tileCounts[2] = rand() % 10 + 12;
+			newReg.tileCounts[3] = rand() % 20;
+			newReg.tileCounts[4] = rand() % 5;
+			newReg.tileCounts[5] = 0;
+			newReg.tileCounts[6] = rand() % 40 + 10;
+			newReg.tileCounts[7] = rand() % 5;
+			break;
+		case 1:
+			newReg.tileCounts[1] = rand() % 20 + 5;
+			newReg.tileCounts[2] = 100;
+			newReg.tileCounts[3] = rand() % 5;
+			newReg.tileCounts[4] = rand() % 5;
+			newReg.tileCounts[5] = rand() % 10;
+			newReg.tileCounts[6] = rand() % 10;
+			newReg.tileCounts[7] = rand() % 5;
+			break;
+		default:
+			newReg.tileCounts[1] = 100;
+			newReg.tileCounts[2] = 0;
+			newReg.tileCounts[3] = 0;
+			newReg.tileCounts[4] = 0;
+			newReg.tileCounts[5] = 0;
+			newReg.tileCounts[6] = 0;
+			newReg.tileCounts[4] = 0;
+			break;
+		}
 
 		int spawners = rand() % 4;
 		for (int i = 0; i < spawners; ++i)
