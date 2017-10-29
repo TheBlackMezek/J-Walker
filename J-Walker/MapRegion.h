@@ -22,7 +22,7 @@ public:
 	MapRegion();
 	~MapRegion();
 
-	size_t tileCounts[3];
+	size_t tileCounts[8];
 	EnemySpawner spawners[3];
 	Transform transform;
 
