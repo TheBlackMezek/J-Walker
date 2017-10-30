@@ -719,6 +719,15 @@ void saveWorld()
 	std::ofstream file;
 	file.open("world.txt");
 
+	std::string firstline;
+	for (int i = 0; i < deck.size(); ++i)
+	{
+		firstline.append(std::to_string(deck[i]));
+		firstline.append(",");
+	}
+	firstline.append("\n");
+	file << firstline;
+
 	for (int i = 0; i < world.regs.size(); ++i)
 	{
 		std::string line;
@@ -756,15 +765,35 @@ void saveWorld()
 void loadWorld()
 {
 	world.regs.clear();
+	deck.clear();
 
 	std::ifstream file;
 	file.open("world.txt");
 
 	std::string line;
+
+
+	std::getline(file, line);
+
+	size_t prevIt = -1;
+	size_t it = line.find(',', 0);
+
+
+	deck.push_back(std::stoi(line.substr(0, it)));
+	prevIt = it;
+	it = line.find(',', it + 1);
+	while (line.find(',', it + 1) != line.npos)
+	{
+		prevIt = it;
+		it = line.find(',', it + 1);
+		deck.push_back(std::stoi(line.substr(prevIt + 1, it - prevIt - 1)));
+	}
+
+
 	while (std::getline(file, line))
 	{
-		size_t prevIt = -1;
-		size_t it = line.find(',', 0);
+		prevIt = -1;
+		it = line.find(',', 0);
 
 		MapRegion reg;
 		reg.transform.pos.x = std::stoi(line.substr(0, it));
@@ -803,6 +832,7 @@ void loadWorld()
 		world.regs.push_back(reg);
 	}
 
+	shuffleDeck();
 	file.close();
 }
 
