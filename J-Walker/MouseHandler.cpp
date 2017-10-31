@@ -46,5 +46,6 @@ void MouseHandler::update()
 	else
 	{
 		leftDown = false;
+		leftDownStart = false;
 	}
 }
