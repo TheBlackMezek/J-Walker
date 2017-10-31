@@ -36,6 +36,9 @@ public:
 	static int leftArrowImg;
 	static int rightArrowImg;
 
+	static int cityImg;
+	static int guyImg;
+
 
 	static void init();
 };

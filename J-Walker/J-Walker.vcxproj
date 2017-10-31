@@ -129,6 +129,7 @@
     <ClCompile Include="Box.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Circle.cpp" />
+    <ClCompile Include="City.cpp" />
     <ClCompile Include="Line.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MapRegion.cpp" />
@@ -137,12 +138,14 @@
     <ClCompile Include="TextureLoader.cpp" />
     <ClCompile Include="TileRender.cpp" />
     <ClCompile Include="TileTypes.cpp" />
+    <ClCompile Include="Unit.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Box.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Circle.h" />
+    <ClInclude Include="City.h" />
     <ClInclude Include="Line.h" />
     <ClInclude Include="MapRegion.h" />
     <ClInclude Include="MouseHandler.h" />
@@ -150,6 +153,7 @@
     <ClInclude Include="TextureLoader.h" />
     <ClInclude Include="TileRender.h" />
     <ClInclude Include="TileTypes.h" />
+    <ClInclude Include="Unit.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
@@ -176,12 +180,14 @@
     <Image Include="AvatarButton2.png" />
     <Image Include="BackButton1.png" />
     <Image Include="BackButton2.png" />
+    <Image Include="CityImg.png" />
     <Image Include="DesertTile.png" />
     <Image Include="EmptyTile.png" />
     <Image Include="ForestTile.png" />
     <Image Include="GenButton1.png" />
     <Image Include="GenButton2.png" />
     <Image Include="GrassTile.png" />
+    <Image Include="GuyImg.png" />
     <Image Include="HillTile.png" />
     <Image Include="LeftArrow.png" />
     <Image Include="MarshTile.png" />

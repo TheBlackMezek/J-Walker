@@ -7,6 +7,7 @@
 
 #include "Box.h"
 #include "TileRender.h"
+#include "TextureLoader.h"
 
 
 
@@ -43,6 +44,8 @@ MapRegion::~MapRegion()
 
 
 
+
+
 void MapRegion::drawAvatar(vec2 playerPos)
 {
 	vec2 mid = { transform.pos.x * 400 + 200, transform.pos.y * 400 + 200 };
@@ -54,7 +57,7 @@ void MapRegion::drawAvatar(vec2 playerPos)
 		{
 			if (spawners[q].active)
 			{
-				Box::draw(playerPos, spawners[q].transform.pos + transform.pos * 400, vec2{ 6, 6 }, RED);
+				Box::drawTexture(TextureLoader::cityImg, playerPos, spawners[q].transform.pos + transform.pos * 400, vec2{ 6, 6 }, RED);
 			}
 		}
 

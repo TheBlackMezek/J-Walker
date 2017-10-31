@@ -14,6 +14,32 @@ World::World()
 	MapRegion reg;
 	reg.transform.pos = { 0,0 };
 	regs.push_back(reg);
+
+	for (int i = 0; i < 10; ++i)
+	{
+		City city;
+		city.transform.pos = { (float)(rand() % 40 - 20) * 40, (float)(rand() % 40 - 20) * 40 };
+		int tint = rand() % 5;
+		switch (tint)
+		{
+		case 0:
+			city.tint = WHITE;
+			break;
+		case 1:
+			city.tint = RED;
+			break;
+		case 2:
+			city.tint = BLUE;
+			break;
+		case 3:
+			city.tint = GREEN;
+			break;
+		case 4:
+			city.tint = YELLOW;
+			break;
+		}
+		cities.push_back(city);
+	}
 }
 
 
@@ -55,6 +81,16 @@ void World::update(vec2 playerPos)
 		}
 	}
 
+	for (int i = 0; i < cities.size(); ++i)
+	{
+		cities[i].update(playerPos, *this);
+	}
+
+	for (int i = 0; i < units.size(); ++i)
+	{
+		units[i].update(playerPos, *this);
+	}
+
 	for (int i = 0; i < enemies.size(); ++i)
 	{
 		vec2 vel = normal(playerPos - enemies[i]) * 40 * delta;
@@ -92,6 +128,16 @@ void World::drawAvatar(vec2 playerPos)
 	for (int i = 0; i < bullets.size(); ++i)
 	{
 		Circle::draw(playerPos, bullets[i].pos, 3, RED);
+	}
+
+	for (int i = 0; i < cities.size(); ++i)
+	{
+		cities[i].draw(playerPos);
+	}
+
+	for (int i = 0; i < units.size(); ++i)
+	{
+		units[i].draw(playerPos);
 	}
 
 	for (int i = 0; i < enemies.size(); ++i)

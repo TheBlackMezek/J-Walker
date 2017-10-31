@@ -26,6 +26,9 @@ int TextureLoader::marshImg;
 int TextureLoader::leftArrowImg;
 int TextureLoader::rightArrowImg;
 
+int TextureLoader::cityImg;
+int TextureLoader::guyImg;
+
 
 
 TextureLoader::TextureLoader()
@@ -63,4 +66,7 @@ void TextureLoader::init()
 
 	leftArrowImg = sfw::loadTextureMap("LeftArrow.png");
 	rightArrowImg = sfw::loadTextureMap("RightArrow.png");
+
+	cityImg = sfw::loadTextureMap("CityImg.png");
+	guyImg = sfw::loadTextureMap("GuyImg.png");
 }

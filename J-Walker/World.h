@@ -6,6 +6,8 @@
 #include "MathLib\Vec2.h"
 
 #include "MapRegion.h"
+#include "City.h"
+#include "Unit.h"
 
 
 
@@ -25,6 +27,8 @@ public:
 	~World();
 
 	std::vector<MapRegion> regs;
+	std::vector<City> cities;
+	std::vector<Unit> units;
 	std::vector<Bullet> bullets;
 	std::vector<vec2> enemies;
 

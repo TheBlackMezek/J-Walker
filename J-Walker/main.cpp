@@ -484,6 +484,7 @@ int main()
 			if (sfw::getKey(KEY_ESCAPE))
 			{
 				state = WORLD_STATE;
+				world.units.clear();
 				player.transform.pos = { 20,20 };
 			}
 		}
