@@ -168,3 +168,17 @@ void World::drawEdit(vec2 reg)
 		regs[i].drawAvatar(camPos);
 	}
 }
+
+
+
+int World::getTile(vec2 pos)
+{
+	vec2 regpos = pos / 10;
+	for (int i = 0; i < regs.size(); ++i)
+	{
+		if (regs[i].transform.pos == regpos)
+		{
+			return regs[i].getTile((int)pos.x % 10, (int)pos.y % 10);
+		}
+	}
+}

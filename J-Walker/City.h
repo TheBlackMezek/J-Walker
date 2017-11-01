@@ -17,6 +17,8 @@ public:
 	Transform transform;
 	size_t tint;
 
+
+
 	void update(vec2 playerPos, World& world);
 	void draw(vec2 playerPos);
 };
