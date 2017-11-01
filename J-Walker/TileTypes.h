@@ -10,6 +10,8 @@ struct MapTile
 {
 	char* name;
 	int texId;
+	float food;
+	float metal;
 };
 
 
