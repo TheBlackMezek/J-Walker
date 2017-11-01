@@ -35,7 +35,7 @@ void TileRender::draw(vec2 playerPos, vec2 pos, vec2 size, int type, bool worldM
 	}
 	else
 	{
-		Box::drawTexture(TileTypes::tileTypes[type].texId, playerPos, pos, size);
+		Box::drawTexture(TileTypes::get(type).texId, playerPos, pos, size);
 	}
 }
 
@@ -52,6 +52,6 @@ void TileRender::draw(vec2 pos, vec2 size, int type, bool worldMode)
 	}
 	else
 	{
-		Box::drawTexture(TileTypes::tileTypes[type].texId, pos, size);
+		Box::drawTexture(TileTypes::get(type).texId, pos, size);
 	}
 }

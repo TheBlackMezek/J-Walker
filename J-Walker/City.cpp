@@ -1,16 +1,25 @@
 #include "City.h"
 
+#include <iostream>
 #include "sfwdraw.h"
 
 #include "World.h"
 #include "Box.h"
 #include "TextureLoader.h"
 #include "Unit.h"
+#include "TileTypes.h"
 
 
-City::City()
+City::City(World& world)
 {
 	tint = WHITE;
+
+	foodProd = 0;
+	metalProd = 0;
+	food = 0;
+	metal = 0;
+
+	//setProd(world);
 }
 
 
@@ -18,12 +27,18 @@ City::~City()
 {
 }
 
-void City::update(vec2 playerPos, World& world)
+void City::update(vec2 playerPos, World& world, float dt)
 {
 	if (distance(playerPos, transform.pos) < 1200)
 	{
-		if (rand() % 1000 == 0)
+		metal += metalProd * dt;
+		food += foodProd * dt + foodProd * metal * dt;
+
+		if (food > 10)
 		{
+			food -= 10;
+			metal -= 1;
+
 			Unit unit;
 			unit.transform.pos = transform.pos;
 			unit.city = this;
@@ -43,4 +58,26 @@ void City::draw(vec2 playerPos)
 	}
 	Box::drawTexture(TextureLoader::cityImg, playerPos,
 		transform.pos, vec2{ 32, 32 }, tint);
+}
+
+
+
+void City::setProd(World& world)
+{
+	foodProd = 0;
+	metalProd = 0;
+	//vec2 gridpos = vec2{ transform.pos.x / 40, transform.pos.y / 40 };
+	vec2 gridpos;
+	gridpos.x = transform.pos.x / 40;
+	gridpos.y = transform.pos.y / 40;
+	this;
+	for (int x = gridpos.x - 1; x <= gridpos.x + 1; ++x)
+	{
+		for (int y = gridpos.y - 1; y <= gridpos.y + 1; ++y)
+		{
+			MapTile t = TileTypes::get(world.getTile(x, y));
+			foodProd += t.food;
+			metalProd += t.metal;
+		}
+	}
 }

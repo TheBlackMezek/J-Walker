@@ -22,9 +22,10 @@ public:
 	TileTypes();
 	~TileTypes();
 
-	static std::vector<MapTile> tileTypes;
+	std::vector<MapTile> tileTypes;
 
-	static void init();
-	static int getImgForType(int type);
+	static MapTile get(int type);
+	static int num();
+	//static void init();
+	//static int getImgForType(int type);
 };
-

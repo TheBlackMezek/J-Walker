@@ -39,6 +39,6 @@ public:
 	void drawWorld(vec2 playerPos);
 	void drawEdit(vec2 reg);
 
-	int getTile(vec2 pos);
+	int getTile(int x, int y);
 };
 

@@ -83,8 +83,35 @@ int main()
 	sfw::setBackgroundColor(BLACK);
 
 	TextureLoader::init();
-	TileTypes::init();
+	//TileTypes::init();
 	MouseHandler::init();
+
+	for (int i = 0; i < 10; ++i)
+	{
+		City city(world);
+		city.transform.pos = { (float)(rand() % 40 - 20) * 40, (float)(rand() % 40 - 20) * 40 };
+		int tint = rand() % 5;
+		switch (tint)
+		{
+		case 0:
+			city.tint = WHITE;
+			break;
+		case 1:
+			city.tint = RED;
+			break;
+		case 2:
+			city.tint = BLUE;
+			break;
+		case 3:
+			city.tint = GREEN;
+			break;
+		case 4:
+			city.tint = YELLOW;
+			break;
+		}
+		city.setProd(world);
+		world.cities.push_back(city);
+	}
 
 	newReg.tileCounts[0] = -1;
 	deck.push_back(1);
@@ -639,8 +666,8 @@ void genRegion(int type)
 			newReg.setTile(i, regFillType);
 		}
 		editTileType = regFillType;
-		tileTypeBut.imgs[0] = TileTypes::tileTypes[editTileType].texId;
-		tileTypeBut.imgs[1] = TileTypes::tileTypes[editTileType].texId;
+		tileTypeBut.imgs[0] = TileTypes::get(editTileType).texId;
+		tileTypeBut.imgs[1] = TileTypes::get(editTileType).texId;
 
 		int spawners = rand() % 4;
 		for (int i = 0; i < spawners; ++i)
@@ -692,22 +719,22 @@ void previousTileType()
 	editTilesNotEntities = true;
 	if (editTileType < 0)
 	{
-		editTileType = TileTypes::tileTypes.size() - 1;
+		editTileType = TileTypes::num() - 1;
 	}
-	tileTypeBut.imgs[0] = TileTypes::tileTypes[editTileType].texId;
-	tileTypeBut.imgs[1] = TileTypes::tileTypes[editTileType].texId;
+	tileTypeBut.imgs[0] = TileTypes::get(editTileType).texId;
+	tileTypeBut.imgs[1] = TileTypes::get(editTileType).texId;
 }
 
 void nextTileType()
 {
 	++editTileType;
 	editTilesNotEntities = true;
-	if (editTileType == TileTypes::tileTypes.size())
+	if (editTileType == TileTypes::num())
 	{
 		editTileType = 0;
 	}
-	tileTypeBut.imgs[0] = TileTypes::tileTypes[editTileType].texId;
-	tileTypeBut.imgs[1] = TileTypes::tileTypes[editTileType].texId;
+	tileTypeBut.imgs[0] = TileTypes::get(editTileType).texId;
+	tileTypeBut.imgs[1] = TileTypes::get(editTileType).texId;
 }
 
 void selectTiles()
@@ -833,6 +860,14 @@ void loadWorld()
 		world.regs.push_back(reg);
 	}
 
+
+	//temporary
+	for (int i = 0; i < world.cities.size(); ++i)
+	{
+		world.cities[i].setProd(world);
+	}
+
+
 	shuffleDeck();
 	file.close();
 }
@@ -859,8 +894,8 @@ void drawCard()
 		else
 		{
 			newCardType = 0;
-			cardTypeBut.imgs[0] = TileTypes::tileTypes[newCardType].texId;
-			cardTypeBut.imgs[1] = TileTypes::tileTypes[newCardType].texId;
+			cardTypeBut.imgs[0] = TileTypes::get(editTileType).texId;
+			cardTypeBut.imgs[1] = TileTypes::get(editTileType).texId;
 		}
 	}
 }
@@ -874,13 +909,13 @@ void nextCardType()
 	}
 	if (newCardType != 6)
 	{
-		cardTypeBut.imgs[0] = TileTypes::tileTypes[newCardType].texId;
-		cardTypeBut.imgs[1] = TileTypes::tileTypes[newCardType].texId;
+		cardTypeBut.imgs[0] = TileTypes::get(editTileType).texId;
+		cardTypeBut.imgs[1] = TileTypes::get(editTileType).texId;
 	}
 	else
 	{
-		cardTypeBut.imgs[0] = TileTypes::tileTypes[7].texId;
-		cardTypeBut.imgs[1] = TileTypes::tileTypes[7].texId;
+		cardTypeBut.imgs[0] = TileTypes::get(7).texId;
+		cardTypeBut.imgs[1] = TileTypes::get(7).texId;
 	}
 }
 
@@ -893,13 +928,13 @@ void prevCardType()
 	}
 	if (newCardType != 6)
 	{
-		cardTypeBut.imgs[0] = TileTypes::tileTypes[newCardType].texId;
-		cardTypeBut.imgs[1] = TileTypes::tileTypes[newCardType].texId;
+		cardTypeBut.imgs[0] = TileTypes::get(editTileType).texId;
+		cardTypeBut.imgs[1] = TileTypes::get(editTileType).texId;
 	}
 	else
 	{
-		cardTypeBut.imgs[0] = TileTypes::tileTypes[7].texId;
-		cardTypeBut.imgs[1] = TileTypes::tileTypes[7].texId;
+		cardTypeBut.imgs[0] = TileTypes::get(7).texId;
+		cardTypeBut.imgs[1] = TileTypes::get(7).texId;
 	}
 }
 

@@ -15,31 +15,7 @@ World::World()
 	reg.transform.pos = { 0,0 };
 	regs.push_back(reg);
 
-	for (int i = 0; i < 10; ++i)
-	{
-		City city;
-		city.transform.pos = { (float)(rand() % 40 - 20) * 40, (float)(rand() % 40 - 20) * 40 };
-		int tint = rand() % 5;
-		switch (tint)
-		{
-		case 0:
-			city.tint = WHITE;
-			break;
-		case 1:
-			city.tint = RED;
-			break;
-		case 2:
-			city.tint = BLUE;
-			break;
-		case 3:
-			city.tint = GREEN;
-			break;
-		case 4:
-			city.tint = YELLOW;
-			break;
-		}
-		cities.push_back(city);
-	}
+	
 }
 
 
@@ -83,7 +59,7 @@ void World::update(vec2 playerPos)
 
 	for (int i = 0; i < cities.size(); ++i)
 	{
-		cities[i].update(playerPos, *this);
+		cities[i].update(playerPos, *this, delta);
 	}
 
 	for (int i = 0; i < units.size(); ++i)
@@ -171,14 +147,29 @@ void World::drawEdit(vec2 reg)
 
 
 
-int World::getTile(vec2 pos)
+int World::getTile(int x, int y)
 {
-	vec2 regpos = pos / 10;
+	
+
+	vec2 regpos = { x / 10, y / 10 };
+
+	if (x < 0)
+	{
+		regpos.x -= 1;
+		x = x * -1 - 1;
+	}
+	if (y < 0)
+	{
+		regpos.y -= 1;
+		y = y * -1 - 1;
+	}
+
 	for (int i = 0; i < regs.size(); ++i)
 	{
 		if (regs[i].transform.pos == regpos)
 		{
-			return regs[i].getTile((int)pos.x % 10, (int)pos.y % 10);
+			return regs[i].getTile(x % 10, y % 10);
 		}
 	}
+	return 0;
 }
